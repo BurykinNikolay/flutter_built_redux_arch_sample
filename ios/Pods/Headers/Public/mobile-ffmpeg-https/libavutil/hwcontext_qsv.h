@@ -1,0 +1,1 @@
+../../../../mobile-ffmpeg-https/libavutil.framework/Headers/hwcontext_qsv.h
