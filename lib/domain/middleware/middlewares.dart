@@ -4,7 +4,7 @@ import 'navigation_middleware.dart';
 import 'user_middleware.dart';
 
 final middlewares = [
-  createEpicMiddleware([]),
+  // createEpicMiddleware([]),
   navigationMiddleware().build(),
   createUserMiddleware().build(),
 ];

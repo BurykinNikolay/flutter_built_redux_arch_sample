@@ -21,4 +21,8 @@ class MainScreenPresenter extends StatelessWidget {
       presenter: this,
     );
   }
+
+  openEditor() {
+    actions.routeTo(AppRoute.from(Routes.questionEditor));
+  }
 }

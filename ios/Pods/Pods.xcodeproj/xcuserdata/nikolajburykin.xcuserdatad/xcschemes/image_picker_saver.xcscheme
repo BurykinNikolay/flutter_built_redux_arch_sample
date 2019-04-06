@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "159C8910E0AF76B5E5857F65BCEA0195"
+               BlueprintIdentifier = "843EF85C5757D623075E8F06969CE813"
+               BuildableName = "libimage_picker_saver.a"
                BlueprintName = "image_picker_saver"
-               ReferencedContainer = "container:Pods.xcodeproj"
-               BuildableName = "libimage_picker_saver.a">
+               ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

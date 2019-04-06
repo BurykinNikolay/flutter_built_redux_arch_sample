@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "423F43F6715C389D793ABAC6B4072917"
+               BlueprintIdentifier = "04715EBE1EEBD5BA79FC6CBDAE7AE662"
+               BuildableName = "libkeyboard_visibility.a"
                BlueprintName = "keyboard_visibility"
-               ReferencedContainer = "container:Pods.xcodeproj"
-               BuildableName = "libkeyboard_visibility.a">
+               ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

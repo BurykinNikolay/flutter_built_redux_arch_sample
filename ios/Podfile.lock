@@ -73,21 +73,21 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/video_player/ios"
 
 SPEC CHECKSUMS:
-  camera: be01db3b2193839f9af56a9db99b7fea444d35f3
-  Flutter: 9d0fac939486c9aba2809b7982dfdbb47a7b0296
-  flutter_ffmpeg: ea17f3c82a2cda4136fccc18e85255d8dfaa2a4a
+  camera: d56ad165545ae5a0ffb892376033760a969c68c8
+  Flutter: 58dd7d1b27887414a370fcccb9e645c08ffd7a6a
+  flutter_ffmpeg: fbe5a7390ca8703a68ed1e72330e37503726a56e
   FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
-  image_picker: ee00aab0487cedc80a304085219503cc6d0f2e22
-  image_picker_saver: c674305b2e535d97afabfdff4e036f5da73e0167
-  keyboard_visibility: 091164adbb54829fcee802523daff9e64a7d8023
+  image_picker: a211f28b95a560433c00f5cd3773f4710a20404d
+  image_picker_saver: 4f28bd70e1efdca68ad88beab0f11d22cffe04f6
+  keyboard_visibility: 96a24de806fe6823c3ad956c01ba2ec6d056616f
   mobile-ffmpeg-https: e08f5a83df33837c2e2d36cbe01e4495977de26f
-  path_provider: 09407919825bfe3c2deae39453b7a5b44f467873
+  path_provider: f96fff6166a8867510d2c25fdcc346327cc4b259
   Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
-  share_extend: 5c61436f8ad534ac10471cf80c929cc16b226196
-  shared_preferences: 5a1d487c427ee18fcd3ea1f2a131569481834b53
-  sqflite: d1612813fa7db7c667bed9f1d1b508deffc56999
-  video_player: 906796a841943c8d370ac7c13b18039aa9b56498
+  share_extend: b6748dc53695587891126a89533b862b92548c7b
+  shared_preferences: 1feebfa37bb57264736e16865e7ffae7fc99b523
+  sqflite: ff1d9da63c06588cc8d1faf7256d741f16989d5a
+  video_player: 3964090a33353060ed7f58aa6427c7b4b208ec21
 
 PODFILE CHECKSUM: f89e2d3393e97ef827d5588a24b755fc03ebc243
 
-COCOAPODS: 1.5.3
+COCOAPODS: 1.6.1

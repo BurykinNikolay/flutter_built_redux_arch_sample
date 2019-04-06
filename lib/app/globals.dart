@@ -35,6 +35,7 @@ Future<bool> initStore() async {
     reducers,
     AppState((b) => b..userState = state.toBuilder()),
     AppActions(),
+    middleware: middlewares,
   );
   // if (state.loggedIn) {
   //   _store.actions.userProfile.getProfile();

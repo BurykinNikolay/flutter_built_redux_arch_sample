@@ -9,6 +9,7 @@ import 'package:yops_interview/domain/actions/actions.dart';
 import 'package:yops_interview/domain/states/app_state.dart';
 import 'package:yops_interview/navigation/routes.dart';
 import 'package:yops_interview/navigation/nav_key.dart';
+import 'package:yops_interview/presentation/presenters.dart';
 
 Store store;
 
@@ -31,6 +32,10 @@ void _routeTo(MiddlewareApi<AppState, AppStateBuilder, AppActions> api,
     case Routes.home:
       navigatorKey.currentState.pushNamedAndRemoveUntil(
           Routes.home, ModalRoute.withName(Routes.home));
+      break;
+    case Routes.questionEditor:
+      navigatorKey.currentState.push(CupertinoPageRoute<void>(
+          builder: (BuildContext context) => QuestionEditor()));
       break;
 
     case Routes.underConstruction:

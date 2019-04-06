@@ -10,8 +10,22 @@ class Page404 extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset('assets/images/404.jpg'),
-            Text('404. Sorry, it is construction site here'),
+            Stack(
+              children: <Widget>[
+                Image.asset('assets/images/banner-style02-copy-4.png'),
+                Positioned(
+                  left: 27,
+                  bottom: 32,
+                  child: Text(
+                    "Сколько?\nКакой пенис?\nПутину?",
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 24,
+                        fontFamily: "Montserrat"),
+                  ),
+                )
+              ],
+            )
           ],
         ),
       ),

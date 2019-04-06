@@ -1,1 +1,0 @@
-../../../../mobile-ffmpeg-https/libavdevice.framework/Headers/avdevice.h

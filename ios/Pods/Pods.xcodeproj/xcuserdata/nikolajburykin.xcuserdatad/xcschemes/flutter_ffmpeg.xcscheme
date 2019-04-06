@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "4DDD182BF4F1D7A2EE8CAE217B407CB5"
+               BlueprintIdentifier = "AE48C7870678049988459EBE2AA66E8C"
+               BuildableName = "libflutter_ffmpeg.a"
                BlueprintName = "flutter_ffmpeg"
-               ReferencedContainer = "container:Pods.xcodeproj"
-               BuildableName = "libflutter_ffmpeg.a">
+               ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

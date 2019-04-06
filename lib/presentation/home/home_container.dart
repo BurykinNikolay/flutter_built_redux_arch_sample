@@ -49,7 +49,7 @@ class HomeContainer extends StoreConnector<AppState, AppActions, AppTab> {
       case AppTab.main:
         return 'Главная';
       case AppTab.answers:
-        return 'Мои собаки';
+        return 'Мои ответы';
       case AppTab.profile:
         return 'Профиль';
       default:

@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "BFBA6E597C119F707B573E35982EBC81"
+               BlueprintIdentifier = "41C0F4232F37768171A7DC975FA7EBFD"
+               BuildableName = "libshare_extend.a"
                BlueprintName = "share_extend"
-               ReferencedContainer = "container:Pods.xcodeproj"
-               BuildableName = "libshare_extend.a">
+               ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
