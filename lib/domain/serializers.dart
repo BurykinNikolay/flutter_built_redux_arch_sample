@@ -12,7 +12,7 @@ part 'serializers.g.dart';
 @SerializersFor(const [
   AppState,
   TabState,
-  Question,
+  QuestionsState,
   Error,
   GalleryActionModel,
 ])

@@ -1,4 +1,6 @@
 camera=/Users/nikolajburykin/development/flutter/.pub-cache/hosted/pub.dartlang.org/camera-0.4.3+2/
+cloud_firestore=/Users/nikolajburykin/development/flutter/.pub-cache/hosted/pub.dartlang.org/cloud_firestore-0.9.11/
+firebase_core=/Users/nikolajburykin/development/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_core-0.3.2/
 flutter_ffmpeg=/Users/nikolajburykin/development/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_ffmpeg-0.1.1/
 image_picker=/Users/nikolajburykin/development/flutter/.pub-cache/hosted/pub.dartlang.org/image_picker-0.5.0+9/
 image_picker_saver=/Users/nikolajburykin/development/flutter/.pub-cache/hosted/pub.dartlang.org/image_picker_saver-0.1.0/

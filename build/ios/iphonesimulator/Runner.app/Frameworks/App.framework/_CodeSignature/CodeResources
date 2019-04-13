@@ -10,7 +10,7 @@
 		</data>
 		<key>flutter_assets/AssetManifest.json</key>
 		<data>
-		LoD+de9/U+isXvBGC3jOwgJTzZo=
+		enZ2ON1Fc1JET9OUZ4qqsGglYq8=
 		</data>
 		<key>flutter_assets/FontManifest.json</key>
 		<data>
@@ -18,7 +18,7 @@
 		</data>
 		<key>flutter_assets/LICENSE</key>
 		<data>
-		Bo+eY/4p5/yDXh6y5gBBdkRfnaI=
+		F5sfO03S1xPQVMZYyqzd4cydJP0=
 		</data>
 		<key>flutter_assets/assets/fonts/Montserrat-Bold.ttf</key>
 		<data>
@@ -160,17 +160,21 @@
 		<data>
 		46mAITpX51N1RRR3EqFRPGPmBXc=
 		</data>
+		<key>flutter_assets/assets/video/sample.mp4</key>
+		<data>
+		XFoHJnMXsWaiGOXtt2Z8zStTUb4=
+		</data>
 		<key>flutter_assets/fonts/MaterialIcons-Regular.ttf</key>
 		<data>
 		nIzDzw7hjOThppiX5OleKNAxtqM=
 		</data>
 		<key>flutter_assets/isolate_snapshot_data</key>
 		<data>
-		7FwCHAyABxK8yYl9CCpMT9+uWEs=
+		q0bf45iiTPGAKrzh80mNc5isEm4=
 		</data>
 		<key>flutter_assets/kernel_blob.bin</key>
 		<data>
-		kDAMGmzQP0zy9Z52tTzoYjMvd7Y=
+		60coFsdH1MgQkw5MrUUyKNuHggM=
 		</data>
 		<key>flutter_assets/packages/country_icons/icons/flags/png/2.5x/ad.png</key>
 		<data>
@@ -3242,7 +3246,7 @@
 		</data>
 		<key>flutter_assets/vm_snapshot_data</key>
 		<data>
-		ThuNOkz6KsAj1/47UMMpWFWzDKI=
+		0H1R448RhQMLp0jJLh/IoNwjrsA=
 		</data>
 	</dict>
 	<key>files2</key>
@@ -3251,11 +3255,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			LoD+de9/U+isXvBGC3jOwgJTzZo=
+			enZ2ON1Fc1JET9OUZ4qqsGglYq8=
 			</data>
 			<key>hash2</key>
 			<data>
-			624qDLsbNBllOcXYJH3/SgGla1hCxcCRL0aeAkynmCc=
+			Rkm/JAp7hDIpEDO+skdGVYAsiUF1Dv90MwGnRQXdhg0=
 			</data>
 		</dict>
 		<key>flutter_assets/FontManifest.json</key>
@@ -3273,11 +3277,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			Bo+eY/4p5/yDXh6y5gBBdkRfnaI=
+			F5sfO03S1xPQVMZYyqzd4cydJP0=
 			</data>
 			<key>hash2</key>
 			<data>
-			YnHnf5pXOxGEBS19En3a9K7QEnGxufZ5+Zg3hFtkmX4=
+			i1GEVVKJ/xJ/wi3XtmFH2fLfG5GzcLCNmfs4RH+eN+8=
 			</data>
 		</dict>
 		<key>flutter_assets/assets/fonts/Montserrat-Bold.ttf</key>
@@ -3665,6 +3669,17 @@
 			nHMtKe62HdUjIEeXVg8t3KHJZ1JSNP77n38bPWe/xDs=
 			</data>
 		</dict>
+		<key>flutter_assets/assets/video/sample.mp4</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			XFoHJnMXsWaiGOXtt2Z8zStTUb4=
+			</data>
+			<key>hash2</key>
+			<data>
+			HXIJFqgxxFRUkl3qcH1He90jaLxI83FbtUZMJwe6mFk=
+			</data>
+		</dict>
 		<key>flutter_assets/fonts/MaterialIcons-Regular.ttf</key>
 		<dict>
 			<key>hash</key>
@@ -3680,22 +3695,22 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			7FwCHAyABxK8yYl9CCpMT9+uWEs=
+			q0bf45iiTPGAKrzh80mNc5isEm4=
 			</data>
 			<key>hash2</key>
 			<data>
-			wwqnw9NWapcwUOaSAau9x52QfL34GbEWHeZw9oMnp4g=
+			8i7x6AExnBPKd6ry7hl7Phc/XG+SkboUe4o8sdsBKkU=
 			</data>
 		</dict>
 		<key>flutter_assets/kernel_blob.bin</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			kDAMGmzQP0zy9Z52tTzoYjMvd7Y=
+			60coFsdH1MgQkw5MrUUyKNuHggM=
 			</data>
 			<key>hash2</key>
 			<data>
-			dHJce9+OEbm/bQZf57BwinYeD3nf/Eoc8qCl0Fu3Gww=
+			Y6yMeaZrKQ9/nhuYEEWOSz29Ht+E8vm5Ngs6YFVRZlo=
 			</data>
 		</dict>
 		<key>flutter_assets/packages/country_icons/icons/flags/png/2.5x/ad.png</key>
@@ -12139,11 +12154,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			ThuNOkz6KsAj1/47UMMpWFWzDKI=
+			0H1R448RhQMLp0jJLh/IoNwjrsA=
 			</data>
 			<key>hash2</key>
 			<data>
-			+2HYnwwKlQ4MSkGZMz0NQUGoBEG+h2ttTO+IFglV80I=
+			q6rTrot07kvuxa9T3lofk+ZDnrnRetryWrLZIm/reLA=
 			</data>
 		</dict>
 	</dict>

@@ -18,12 +18,14 @@ class _$AppActions extends AppActions {
   final ActionDispatcher<void> routeBack =
       new ActionDispatcher<void>('AppActions-routeBack');
   final TabActions tab = new TabActions();
+  final QuestionsAction question = new QuestionsAction();
 
   @override
   void setDispatcher(Dispatcher dispatcher) {
     routeTo.setDispatcher(dispatcher);
     routeBack.setDispatcher(dispatcher);
     tab.setDispatcher(dispatcher);
+    question.setDispatcher(dispatcher);
   }
 }
 

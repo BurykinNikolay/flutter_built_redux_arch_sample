@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import 'package:yops_interview/domain/actions/actions.dart';
 
-import 'package:yops_interview/domain/models/models.dart';
 import 'package:yops_interview/navigation/routes.dart';
 
 import 'main_screen_model.dart';
@@ -24,5 +23,10 @@ class MainScreenPresenter extends StatelessWidget {
 
   openEditor() {
     actions.routeTo(AppRoute.from(Routes.questionEditor));
+  }
+
+  openQuestionCarusel(List<String> questions) {
+    actions
+        .routeTo(AppRoute.from(Routes.questionCarusel, arguments: questions));
   }
 }

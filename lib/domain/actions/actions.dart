@@ -8,6 +8,9 @@ export 'app_route.dart';
 import 'tab_actions.dart';
 export 'tab_actions.dart';
 
+import 'question_actions.dart';
+export 'question_actions.dart';
+
 part 'actions.g.dart';
 
 abstract class AppActions extends ReduxActions {
@@ -17,6 +20,7 @@ abstract class AppActions extends ReduxActions {
   ActionDispatcher<void> get routeBack;
 
   TabActions get tab;
+  QuestionsAction get question;
 
   factory AppActions() => new _$AppActions();
 }

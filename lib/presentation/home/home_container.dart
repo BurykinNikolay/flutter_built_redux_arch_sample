@@ -1,8 +1,6 @@
-import 'package:yops_interview/app/icons.dart';
 import 'package:yops_interview/domain/actions/actions.dart';
 import 'package:yops_interview/domain/states/states.dart';
 import 'package:yops_interview/domain/models/models.dart';
-import 'package:yops_interview/app/theme/app_theme.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_built_redux/flutter_built_redux.dart';
@@ -67,6 +65,8 @@ class HomeContainer extends StoreConnector<AppState, AppActions, AppTab> {
         return Icons.video_label;
 
       case AppTab.profile:
+        return Icons.person;
+      default:
         return Icons.person;
     }
   }

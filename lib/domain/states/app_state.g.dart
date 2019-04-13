@@ -27,6 +27,9 @@ class _$AppStateSerializer implements StructuredSerializer<AppState> {
       'userState',
       serializers.serialize(object.userState,
           specifiedType: const FullType(UserState)),
+      'questionState',
+      serializers.serialize(object.questionState,
+          specifiedType: const FullType(QuestionsState)),
     ];
 
     return result;
@@ -56,6 +59,10 @@ class _$AppStateSerializer implements StructuredSerializer<AppState> {
           result.userState.replace(serializers.deserialize(value,
               specifiedType: const FullType(UserState)) as UserState);
           break;
+        case 'questionState':
+          result.questionState.replace(serializers.deserialize(value,
+              specifiedType: const FullType(QuestionsState)) as QuestionsState);
+          break;
       }
     }
 
@@ -70,11 +77,14 @@ class _$AppState extends AppState {
   final MainScreenState mainScreenState;
   @override
   final UserState userState;
+  @override
+  final QuestionsState questionState;
 
   factory _$AppState([void updates(AppStateBuilder b)]) =>
       (new AppStateBuilder()..update(updates)).build();
 
-  _$AppState._({this.tabState, this.mainScreenState, this.userState})
+  _$AppState._(
+      {this.tabState, this.mainScreenState, this.userState, this.questionState})
       : super._() {
     if (tabState == null) {
       throw new BuiltValueNullFieldError('AppState', 'tabState');
@@ -84,6 +94,9 @@ class _$AppState extends AppState {
     }
     if (userState == null) {
       throw new BuiltValueNullFieldError('AppState', 'userState');
+    }
+    if (questionState == null) {
+      throw new BuiltValueNullFieldError('AppState', 'questionState');
     }
   }
 
@@ -100,13 +113,16 @@ class _$AppState extends AppState {
     return other is AppState &&
         tabState == other.tabState &&
         mainScreenState == other.mainScreenState &&
-        userState == other.userState;
+        userState == other.userState &&
+        questionState == other.questionState;
   }
 
   @override
   int get hashCode {
-    return $jf($jc($jc($jc(0, tabState.hashCode), mainScreenState.hashCode),
-        userState.hashCode));
+    return $jf($jc(
+        $jc($jc($jc(0, tabState.hashCode), mainScreenState.hashCode),
+            userState.hashCode),
+        questionState.hashCode));
   }
 
   @override
@@ -114,7 +130,8 @@ class _$AppState extends AppState {
     return (newBuiltValueToStringHelper('AppState')
           ..add('tabState', tabState)
           ..add('mainScreenState', mainScreenState)
-          ..add('userState', userState))
+          ..add('userState', userState)
+          ..add('questionState', questionState))
         .toString();
   }
 }
@@ -137,6 +154,12 @@ class AppStateBuilder implements Builder<AppState, AppStateBuilder> {
       _$this._userState ??= new UserStateBuilder();
   set userState(UserStateBuilder userState) => _$this._userState = userState;
 
+  QuestionsStateBuilder _questionState;
+  QuestionsStateBuilder get questionState =>
+      _$this._questionState ??= new QuestionsStateBuilder();
+  set questionState(QuestionsStateBuilder questionState) =>
+      _$this._questionState = questionState;
+
   AppStateBuilder();
 
   AppStateBuilder get _$this {
@@ -144,6 +167,7 @@ class AppStateBuilder implements Builder<AppState, AppStateBuilder> {
       _tabState = _$v.tabState?.toBuilder();
       _mainScreenState = _$v.mainScreenState?.toBuilder();
       _userState = _$v.userState?.toBuilder();
+      _questionState = _$v.questionState?.toBuilder();
       _$v = null;
     }
     return this;
@@ -170,7 +194,8 @@ class AppStateBuilder implements Builder<AppState, AppStateBuilder> {
           new _$AppState._(
               tabState: tabState.build(),
               mainScreenState: mainScreenState.build(),
-              userState: userState.build());
+              userState: userState.build(),
+              questionState: questionState.build());
     } catch (_) {
       String _$failedField;
       try {
@@ -180,6 +205,8 @@ class AppStateBuilder implements Builder<AppState, AppStateBuilder> {
         mainScreenState.build();
         _$failedField = 'userState';
         userState.build();
+        _$failedField = 'questionState';
+        questionState.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             'AppState', _$failedField, e.toString());

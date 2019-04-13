@@ -1,10 +1,6 @@
-import 'dart:convert';
-
 import 'package:built_redux/built_redux.dart';
 import 'package:yops_interview/domain/actions/actions.dart';
-import 'package:yops_interview/domain/serializers.dart';
 import 'package:yops_interview/domain/states/app_state.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:yops_interview/domain/states/states.dart';
 
 const USER_STATE_STORE_KEY = "USER_STATE_STORE_KEY";

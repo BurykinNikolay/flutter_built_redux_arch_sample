@@ -24,13 +24,6 @@ class _$MainScreenStateSerializer
       serializers.serialize(object.loading,
           specifiedType: const FullType(bool)),
     ];
-    if (object.questions != null) {
-      result
-        ..add('questions')
-        ..add(serializers.serialize(object.questions,
-            specifiedType:
-                const FullType(BuiltList, const [const FullType(Question)])));
-    }
 
     return result;
   }
@@ -46,11 +39,6 @@ class _$MainScreenStateSerializer
       iterator.moveNext();
       final dynamic value = iterator.current;
       switch (key) {
-        case 'questions':
-          result.questions.replace(serializers.deserialize(value,
-              specifiedType: const FullType(
-                  BuiltList, const [const FullType(Question)])) as BuiltList);
-          break;
         case 'loading':
           result.loading = serializers.deserialize(value,
               specifiedType: const FullType(bool)) as bool;
@@ -64,14 +52,12 @@ class _$MainScreenStateSerializer
 
 class _$MainScreenState extends MainScreenState {
   @override
-  final BuiltList<Question> questions;
-  @override
   final bool loading;
 
   factory _$MainScreenState([void updates(MainScreenStateBuilder b)]) =>
       (new MainScreenStateBuilder()..update(updates)).build();
 
-  _$MainScreenState._({this.questions, this.loading}) : super._() {
+  _$MainScreenState._({this.loading}) : super._() {
     if (loading == null) {
       throw new BuiltValueNullFieldError('MainScreenState', 'loading');
     }
@@ -88,20 +74,17 @@ class _$MainScreenState extends MainScreenState {
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is MainScreenState &&
-        questions == other.questions &&
-        loading == other.loading;
+    return other is MainScreenState && loading == other.loading;
   }
 
   @override
   int get hashCode {
-    return $jf($jc($jc(0, questions.hashCode), loading.hashCode));
+    return $jf($jc(0, loading.hashCode));
   }
 
   @override
   String toString() {
     return (newBuiltValueToStringHelper('MainScreenState')
-          ..add('questions', questions)
           ..add('loading', loading))
         .toString();
   }
@@ -111,12 +94,6 @@ class MainScreenStateBuilder
     implements Builder<MainScreenState, MainScreenStateBuilder> {
   _$MainScreenState _$v;
 
-  ListBuilder<Question> _questions;
-  ListBuilder<Question> get questions =>
-      _$this._questions ??= new ListBuilder<Question>();
-  set questions(ListBuilder<Question> questions) =>
-      _$this._questions = questions;
-
   bool _loading;
   bool get loading => _$this._loading;
   set loading(bool loading) => _$this._loading = loading;
@@ -125,7 +102,6 @@ class MainScreenStateBuilder
 
   MainScreenStateBuilder get _$this {
     if (_$v != null) {
-      _questions = _$v.questions?.toBuilder();
       _loading = _$v.loading;
       _$v = null;
     }
@@ -147,22 +123,7 @@ class MainScreenStateBuilder
 
   @override
   _$MainScreenState build() {
-    _$MainScreenState _$result;
-    try {
-      _$result = _$v ??
-          new _$MainScreenState._(
-              questions: _questions?.build(), loading: loading);
-    } catch (_) {
-      String _$failedField;
-      try {
-        _$failedField = 'questions';
-        _questions?.build();
-      } catch (e) {
-        throw new BuiltValueNestedFieldError(
-            'MainScreenState', _$failedField, e.toString());
-      }
-      rethrow;
-    }
+    final _$result = _$v ?? new _$MainScreenState._(loading: loading);
     replace(_$result);
     return _$result;
   }

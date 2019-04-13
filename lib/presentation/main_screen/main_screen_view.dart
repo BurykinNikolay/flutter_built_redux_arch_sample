@@ -1,12 +1,8 @@
+import 'package:built_collection/built_collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-
-import 'package:yops_interview/app/icons.dart';
-import 'package:yops_interview/app/theme/app_theme.dart';
-
-import 'package:yops_interview/domain/models/models.dart';
 
 import 'main_screen_presenter.dart';
 import 'main_screen_model.dart';
@@ -122,8 +118,12 @@ class MainScreenView extends StatelessWidget {
       mainAxisSpacing: 10,
       crossAxisSpacing: 10,
       staggeredTileBuilder: (int index) => new StaggeredTile.fit(1),
-      itemCount: 5,
+      itemCount: model.questions.keys.length,
       itemBuilder: (BuildContext context, int index) {
+        String questionTitle = model.questions.keys.toList()[index];
+        BuiltList<String> questionList =
+            model.questions[model.questions.keys.toList()[index]];
+
         List<Color> colors = [];
         if (index.isEven) {
           colors = [
@@ -141,7 +141,9 @@ class MainScreenView extends StatelessWidget {
           ];
         }
         return GestureDetector(
-            onTap: () {},
+            onTap: () {
+              presenter.openQuestionCarusel(questionList.toList());
+            },
             child: Container(
               height: 148,
               width: 163,
@@ -158,7 +160,7 @@ class MainScreenView extends StatelessWidget {
               ),
               child: Center(
                   child: Text(
-                "Беседует \nHR - Бог",
+                "$questionTitle",
                 style: TextStyle(
                     color: Colors.white,
                     fontFamily: "Montserrat",

@@ -83,8 +83,7 @@ class GalleryView extends StatelessWidget {
             return Center(
                 child: Container(
               child: IgnorePointer(
-                ignoring:
-                    true, //TODO: try to fork original swiper package and add scale mode and make pull request;
+                ignoring: true,
               ),
             ));
           }),

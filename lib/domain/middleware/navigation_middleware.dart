@@ -37,6 +37,11 @@ void _routeTo(MiddlewareApi<AppState, AppStateBuilder, AppActions> api,
       navigatorKey.currentState.push(CupertinoPageRoute<void>(
           builder: (BuildContext context) => QuestionEditor()));
       break;
+    case Routes.questionCarusel:
+      navigatorKey.currentState.push(CupertinoPageRoute<void>(
+          builder: (BuildContext context) =>
+              QuestionCarusel(routeSettings.arguments)));
+      break;
 
     case Routes.underConstruction:
       navigatorKey.currentState.push(

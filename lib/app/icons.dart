@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class yops_interviewIcons {
-  yops_interviewIcons._();
+class YopsinterviewIcons {
+  YopsinterviewIcons._();
 
   static const _kFontFam = 'yops_interviewFont';
 
@@ -68,5 +68,6 @@ class yops_interviewIcons {
 
   static const IconData logo = const IconData(0xe833, fontFamily: _kFontFam);
   static const IconData like = const IconData(0xe834, fontFamily: _kFontFam);
-  static const IconData filter_main = const IconData(0xe835, fontFamily: _kFontFam);
+  static const IconData filter_main =
+      const IconData(0xe835, fontFamily: _kFontFam);
 }

@@ -3,8 +3,6 @@ library app_tab;
 import 'package:built_collection/built_collection.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:yops_interview/app/icons.dart';
-import 'package:flutter/material.dart';
 
 part 'app_tab.g.dart';
 

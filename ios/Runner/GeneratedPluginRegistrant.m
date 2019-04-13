@@ -4,6 +4,8 @@
 
 #import "GeneratedPluginRegistrant.h"
 #import <camera/CameraPlugin.h>
+#import <cloud_firestore/CloudFirestorePlugin.h>
+#import <firebase_core/FirebaseCorePlugin.h>
 #import <flutter_ffmpeg/FlutterFFmpegPlugin.h>
 #import <image_picker/ImagePickerPlugin.h>
 #import <image_picker_saver/ImagePickerSaverPlugin.h>
@@ -18,6 +20,8 @@
 
 + (void)registerWithRegistry:(NSObject<FlutterPluginRegistry>*)registry {
   [CameraPlugin registerWithRegistrar:[registry registrarForPlugin:@"CameraPlugin"]];
+  [FLTCloudFirestorePlugin registerWithRegistrar:[registry registrarForPlugin:@"FLTCloudFirestorePlugin"]];
+  [FLTFirebaseCorePlugin registerWithRegistrar:[registry registrarForPlugin:@"FLTFirebaseCorePlugin"]];
   [FlutterFFmpegPlugin registerWithRegistrar:[registry registrarForPlugin:@"FlutterFFmpegPlugin"]];
   [FLTImagePickerPlugin registerWithRegistrar:[registry registrarForPlugin:@"FLTImagePickerPlugin"]];
   [FLTImagePickerSaverPlugin registerWithRegistrar:[registry registrarForPlugin:@"FLTImagePickerSaverPlugin"]];
