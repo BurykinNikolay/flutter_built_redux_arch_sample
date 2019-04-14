@@ -5,6 +5,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:yops_interview/domain/actions/actions.dart';
 
 import 'package:yops_interview/domain/states/states.dart';
+import 'package:yops_interview/navigation/routes.dart';
 
 Observable sendQuestionEpic(Observable<Action<dynamic>> stream,
     MiddlewareApi<AppState, AppStateBuilder, AppActions> api) {
@@ -17,7 +18,9 @@ Observable sendQuestionEpic(Observable<Action<dynamic>> stream,
     Firestore.instance.runTransaction((transaction) async {
       await transaction.set(
           Firestore.instance.collection("questions").document(),
-          {title: questions});
+          {title: questions}).whenComplete(() {
+        api.actions.routeTo(AppRoute.from(Routes.homeFromEditor));
+      });
     });
   });
 }

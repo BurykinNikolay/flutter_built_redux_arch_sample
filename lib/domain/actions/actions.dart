@@ -11,6 +11,9 @@ export 'tab_actions.dart';
 import 'question_actions.dart';
 export 'question_actions.dart';
 
+import 'camera_actions.dart';
+export 'camera_actions.dart';
+
 part 'actions.g.dart';
 
 abstract class AppActions extends ReduxActions {
@@ -21,6 +24,7 @@ abstract class AppActions extends ReduxActions {
 
   TabActions get tab;
   QuestionsAction get question;
+  CameraAction get camera;
 
   factory AppActions() => new _$AppActions();
 }

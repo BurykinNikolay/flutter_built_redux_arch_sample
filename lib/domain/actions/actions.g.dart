@@ -19,6 +19,7 @@ class _$AppActions extends AppActions {
       new ActionDispatcher<void>('AppActions-routeBack');
   final TabActions tab = new TabActions();
   final QuestionsAction question = new QuestionsAction();
+  final CameraAction camera = new CameraAction();
 
   @override
   void setDispatcher(Dispatcher dispatcher) {
@@ -26,6 +27,7 @@ class _$AppActions extends AppActions {
     routeBack.setDispatcher(dispatcher);
     tab.setDispatcher(dispatcher);
     question.setDispatcher(dispatcher);
+    camera.setDispatcher(dispatcher);
   }
 }
 

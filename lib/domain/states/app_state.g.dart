@@ -30,6 +30,9 @@ class _$AppStateSerializer implements StructuredSerializer<AppState> {
       'questionState',
       serializers.serialize(object.questionState,
           specifiedType: const FullType(QuestionsState)),
+      'cameraState',
+      serializers.serialize(object.cameraState,
+          specifiedType: const FullType(CameraState)),
     ];
 
     return result;
@@ -63,6 +66,10 @@ class _$AppStateSerializer implements StructuredSerializer<AppState> {
           result.questionState.replace(serializers.deserialize(value,
               specifiedType: const FullType(QuestionsState)) as QuestionsState);
           break;
+        case 'cameraState':
+          result.cameraState.replace(serializers.deserialize(value,
+              specifiedType: const FullType(CameraState)) as CameraState);
+          break;
       }
     }
 
@@ -79,12 +86,18 @@ class _$AppState extends AppState {
   final UserState userState;
   @override
   final QuestionsState questionState;
+  @override
+  final CameraState cameraState;
 
   factory _$AppState([void updates(AppStateBuilder b)]) =>
       (new AppStateBuilder()..update(updates)).build();
 
   _$AppState._(
-      {this.tabState, this.mainScreenState, this.userState, this.questionState})
+      {this.tabState,
+      this.mainScreenState,
+      this.userState,
+      this.questionState,
+      this.cameraState})
       : super._() {
     if (tabState == null) {
       throw new BuiltValueNullFieldError('AppState', 'tabState');
@@ -97,6 +110,9 @@ class _$AppState extends AppState {
     }
     if (questionState == null) {
       throw new BuiltValueNullFieldError('AppState', 'questionState');
+    }
+    if (cameraState == null) {
+      throw new BuiltValueNullFieldError('AppState', 'cameraState');
     }
   }
 
@@ -114,15 +130,18 @@ class _$AppState extends AppState {
         tabState == other.tabState &&
         mainScreenState == other.mainScreenState &&
         userState == other.userState &&
-        questionState == other.questionState;
+        questionState == other.questionState &&
+        cameraState == other.cameraState;
   }
 
   @override
   int get hashCode {
     return $jf($jc(
-        $jc($jc($jc(0, tabState.hashCode), mainScreenState.hashCode),
-            userState.hashCode),
-        questionState.hashCode));
+        $jc(
+            $jc($jc($jc(0, tabState.hashCode), mainScreenState.hashCode),
+                userState.hashCode),
+            questionState.hashCode),
+        cameraState.hashCode));
   }
 
   @override
@@ -131,7 +150,8 @@ class _$AppState extends AppState {
           ..add('tabState', tabState)
           ..add('mainScreenState', mainScreenState)
           ..add('userState', userState)
-          ..add('questionState', questionState))
+          ..add('questionState', questionState)
+          ..add('cameraState', cameraState))
         .toString();
   }
 }
@@ -160,6 +180,12 @@ class AppStateBuilder implements Builder<AppState, AppStateBuilder> {
   set questionState(QuestionsStateBuilder questionState) =>
       _$this._questionState = questionState;
 
+  CameraStateBuilder _cameraState;
+  CameraStateBuilder get cameraState =>
+      _$this._cameraState ??= new CameraStateBuilder();
+  set cameraState(CameraStateBuilder cameraState) =>
+      _$this._cameraState = cameraState;
+
   AppStateBuilder();
 
   AppStateBuilder get _$this {
@@ -168,6 +194,7 @@ class AppStateBuilder implements Builder<AppState, AppStateBuilder> {
       _mainScreenState = _$v.mainScreenState?.toBuilder();
       _userState = _$v.userState?.toBuilder();
       _questionState = _$v.questionState?.toBuilder();
+      _cameraState = _$v.cameraState?.toBuilder();
       _$v = null;
     }
     return this;
@@ -195,7 +222,8 @@ class AppStateBuilder implements Builder<AppState, AppStateBuilder> {
               tabState: tabState.build(),
               mainScreenState: mainScreenState.build(),
               userState: userState.build(),
-              questionState: questionState.build());
+              questionState: questionState.build(),
+              cameraState: cameraState.build());
     } catch (_) {
       String _$failedField;
       try {
@@ -207,6 +235,8 @@ class AppStateBuilder implements Builder<AppState, AppStateBuilder> {
         userState.build();
         _$failedField = 'questionState';
         questionState.build();
+        _$failedField = 'cameraState';
+        cameraState.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             'AppState', _$failedField, e.toString());

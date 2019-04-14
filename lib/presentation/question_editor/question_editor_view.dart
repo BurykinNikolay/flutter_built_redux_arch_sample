@@ -40,7 +40,7 @@ class _QuestionEditorViewState extends State<QuestionEditorView> {
         minSize: 27,
         padding: EdgeInsets.symmetric(horizontal: 13.5),
         onPressed: () {
-          print("save");
+          _saveAndSend();
         },
         child: Text(
           "Сохранить",
@@ -61,7 +61,7 @@ class _QuestionEditorViewState extends State<QuestionEditorView> {
                 delegate: SliverChildListDelegate(_questionBuilder()),
               )
             ])),
-        _saveAndSendButton()
+        // _saveAndSendButton()
       ],
     );
   }
@@ -235,5 +235,6 @@ class _QuestionEditorViewState extends State<QuestionEditorView> {
       return updates;
     });
     widget.presenter.saveAndSendQuestion(question);
+    widget.presenter.startProgress(context);
   }
 }

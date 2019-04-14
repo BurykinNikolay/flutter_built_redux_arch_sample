@@ -7,4 +7,5 @@ class Routes {
   static const questionEditor = "questionEditor";
   static const underConstruction = "404";
   static const questionCarusel = "questionCarusel";
+  static const homeFromEditor = "homeFromEditor";
 }

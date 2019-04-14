@@ -11,7 +11,7 @@ import 'package:camera/camera.dart';
 
 import 'dart:async' show Future;
 
-List<CameraDescription> cameras;
+List<CameraDescription> _cameras;
 
 Store<AppState, AppStateBuilder, AppActions> _store;
 
@@ -22,7 +22,24 @@ setStore(store) => _store = store;
 /// loggedIn status returned
 Future<bool> initStore() async {
   var state = UserState();
-  cameras = await availableCameras();
+  _cameras = await availableCameras();
+
+  print(_cameras.length);
+  CameraDescription cameraDescription;
+  if (_cameras.length > 1) {
+    cameraDescription = _cameras[1];
+  }
+
+  CameraController cameraController;
+  if (cameraDescription != null) {
+    cameraController =
+        CameraController(cameraDescription, ResolutionPreset.high);
+    try {
+      await cameraController.initialize();
+    } on CameraException catch (e) {
+      print(e.toString());
+    }
+  }
 
   _store = Store<AppState, AppStateBuilder, AppActions>(
     reducers,
@@ -31,6 +48,9 @@ Future<bool> initStore() async {
     middleware: middlewares,
   );
   _store.actions.question.getQuestions();
+  _store.actions.camera.setCameras(_cameras);
+  _store.actions.camera.setCameraController(cameraController);
+  _store.actions.camera.setCameraDescription(cameraDescription);
 
   return true;
 }

@@ -5,7 +5,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_ffmpeg/flutter_ffmpeg.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:share_extend/share_extend.dart';
 
 class VideoUtil {
   final FlutterFFmpeg _flutterFFmpeg = new FlutterFFmpeg();
@@ -59,7 +58,7 @@ class VideoUtil {
         videoFilePath;
   }
 
-  Future encodeVideo(List<String> assets) async {
+  Future<String> encodeVideo(List<String> assets) async {
     String assetsSettings = "";
     int index = 0;
 
@@ -104,23 +103,22 @@ class VideoUtil {
     final String outputMap = "-map [outv] -map [outa] ";
     final String ffmpegCodec = "mpeg4";
     print(customOptions);
-    VideoUtil.assetPath(videoPath).then((fullVideoPath) {
+    String path;
+    await VideoUtil.assetPath(videoPath).then((fullVideoPath) async {
       _clearDirectory(fullVideoPath);
-      execute(VideoUtil.generateEncodeVideoScript(
+      await execute(VideoUtil.generateEncodeVideoScript(
               assets, fullVideoPath, ffmpegCodec, customOptions, outputMap))
           .then((rc) async {
         if (rc != 0) {
           print("error in video coding: $rc");
+          path = "error";
         } else {
-          _shareFile(fullVideoPath);
+          path = fullVideoPath;
         }
       });
     });
-  }
 
-  void _shareFile(String outputFilePath) async {
-    var file = File(outputFilePath);
-    ShareExtend.share(file.path, "file");
+    return path;
   }
 
   void _clearDirectory(String outputFilePath) {

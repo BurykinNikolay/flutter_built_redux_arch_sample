@@ -5,7 +5,6 @@ import io.flutter.plugins.camera.CameraPlugin;
 import io.flutter.plugins.firebase.cloudfirestore.CloudFirestorePlugin;
 import io.flutter.plugins.firebase.core.FirebaseCorePlugin;
 import com.arthenica.flutter.ffmpeg.FlutterFFmpegPlugin;
-import io.flutter.plugins.imagepicker.ImagePickerPlugin;
 import io.flutter.plugins.imagepickersaver.ImagePickerSaverPlugin;
 import com.github.adee42.keyboardvisibility.KeyboardVisibilityPlugin;
 import io.flutter.plugins.pathprovider.PathProviderPlugin;
@@ -26,7 +25,6 @@ public final class GeneratedPluginRegistrant {
     CloudFirestorePlugin.registerWith(registry.registrarFor("io.flutter.plugins.firebase.cloudfirestore.CloudFirestorePlugin"));
     FirebaseCorePlugin.registerWith(registry.registrarFor("io.flutter.plugins.firebase.core.FirebaseCorePlugin"));
     FlutterFFmpegPlugin.registerWith(registry.registrarFor("com.arthenica.flutter.ffmpeg.FlutterFFmpegPlugin"));
-    ImagePickerPlugin.registerWith(registry.registrarFor("io.flutter.plugins.imagepicker.ImagePickerPlugin"));
     ImagePickerSaverPlugin.registerWith(registry.registrarFor("io.flutter.plugins.imagepickersaver.ImagePickerSaverPlugin"));
     KeyboardVisibilityPlugin.registerWith(registry.registrarFor("com.github.adee42.keyboardvisibility.KeyboardVisibilityPlugin"));
     PathProviderPlugin.registerWith(registry.registrarFor("io.flutter.plugins.pathprovider.PathProviderPlugin"));

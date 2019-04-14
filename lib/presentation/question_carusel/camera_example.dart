@@ -7,9 +7,10 @@ import 'package:path_provider/path_provider.dart';
 import 'package:video_player/video_player.dart';
 
 class CameraExampleHome extends StatefulWidget {
-  final List<CameraDescription> cameras;
+  final CameraController controller;
+
   final Function(String videoPath) next;
-  CameraExampleHome(this.cameras, this.next);
+  CameraExampleHome({this.controller, this.next});
   @override
   _CameraExampleHomeState createState() {
     return _CameraExampleHomeState();
@@ -20,7 +21,6 @@ void logError(String code, String message) =>
     print('Error: $code\nError Message: $message');
 
 class _CameraExampleHomeState extends State<CameraExampleHome> {
-  CameraController controller;
   String imagePath;
   String videoPath;
   VideoPlayerController videoController;
@@ -29,7 +29,6 @@ class _CameraExampleHomeState extends State<CameraExampleHome> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   @override
   void initState() {
-    onNewCameraSelected();
     super.initState();
   }
 
@@ -43,7 +42,7 @@ class _CameraExampleHomeState extends State<CameraExampleHome> {
 
   /// Display the preview from the camera (or a message if the preview is not available).
   Widget _cameraPreviewWidget() {
-    if (controller == null || !controller.value.isInitialized) {
+    if (widget.controller == null || !widget.controller.value.isInitialized) {
       return Center(
           child: Text(
         'Камеры у вашего устройства нет',
@@ -63,8 +62,8 @@ class _CameraExampleHomeState extends State<CameraExampleHome> {
                   child: ClipRRect(
                       borderRadius: BorderRadius.circular(25),
                       child: AspectRatio(
-                        aspectRatio: controller.value.aspectRatio,
-                        child: CameraPreview(controller),
+                        aspectRatio: widget.controller.value.aspectRatio,
+                        child: CameraPreview(widget.controller),
                       ))),
               Expanded(
                   child: Container(
@@ -79,11 +78,12 @@ class _CameraExampleHomeState extends State<CameraExampleHome> {
   /// Display the control bar with buttons to take pictures and record videos.
   Widget _captureControlRowWidget() {
     Widget _iconButton = Container();
-    if (controller.value.isInitialized && !controller.value.isRecordingVideo) {
+    if (widget.controller.value.isInitialized &&
+        !widget.controller.value.isRecordingVideo) {
       _iconButton = GestureDetector(
-        onTap: controller != null &&
-                controller.value.isInitialized &&
-                !controller.value.isRecordingVideo
+        onTap: widget.controller != null &&
+                widget.controller.value.isInitialized &&
+                !widget.controller.value.isRecordingVideo
             ? onVideoRecordButtonPressed
             : null,
         child: Container(
@@ -108,7 +108,7 @@ class _CameraExampleHomeState extends State<CameraExampleHome> {
         ),
       );
     }
-    if (controller.value.isRecordingVideo) {
+    if (widget.controller.value.isRecordingVideo) {
       _iconButton = IconButton(
         padding: EdgeInsets.all(0),
         iconSize: 45,
@@ -116,9 +116,9 @@ class _CameraExampleHomeState extends State<CameraExampleHome> {
           Icons.stop,
         ),
         color: Colors.red,
-        onPressed: controller != null &&
-                controller.value.isInitialized &&
-                controller.value.isRecordingVideo
+        onPressed: widget.controller != null &&
+                widget.controller.value.isInitialized &&
+                widget.controller.value.isRecordingVideo
             ? onStopButtonPressed
             : null,
       );
@@ -128,36 +128,6 @@ class _CameraExampleHomeState extends State<CameraExampleHome> {
   }
 
   String timestamp() => DateTime.now().millisecondsSinceEpoch.toString();
-
-  void onNewCameraSelected() async {
-    CameraDescription cameraDescription;
-    if (widget.cameras.length > 1) {
-      cameraDescription = widget.cameras[1];
-    }
-
-    if (controller != null) {
-      await controller.dispose();
-    }
-    controller = CameraController(cameraDescription, ResolutionPreset.high);
-
-    // If the controller is updated then update the UI.
-    controller.addListener(() {
-      if (mounted) setState(() {});
-      if (controller.value.hasError) {
-        print("error");
-      }
-    });
-
-    try {
-      await controller.initialize();
-    } on CameraException catch (e) {
-      _showCameraException(e);
-    }
-
-    if (mounted) {
-      setState(() {});
-    }
-  }
 
   void onVideoRecordButtonPressed() {
     setState(() {
@@ -179,7 +149,7 @@ class _CameraExampleHomeState extends State<CameraExampleHome> {
   }
 
   Future<String> startVideoRecording() async {
-    if (!controller.value.isInitialized) {
+    if (!widget.controller.value.isInitialized) {
       print('Error: select a camera first.');
       return null;
     }
@@ -189,14 +159,14 @@ class _CameraExampleHomeState extends State<CameraExampleHome> {
     await Directory(dirPath).create(recursive: true);
     final String filePath = '$dirPath/${timestamp()}.mp4';
 
-    if (controller.value.isRecordingVideo) {
+    if (widget.controller.value.isRecordingVideo) {
       // A recording is already started, do nothing.
       return null;
     }
 
     try {
       videoPath = filePath;
-      await controller.startVideoRecording(filePath);
+      await widget.controller.startVideoRecording(filePath);
     } on CameraException catch (e) {
       _showCameraException(e);
       return null;
@@ -205,12 +175,12 @@ class _CameraExampleHomeState extends State<CameraExampleHome> {
   }
 
   Future<void> stopVideoRecording() async {
-    if (!controller.value.isRecordingVideo) {
+    if (!widget.controller.value.isRecordingVideo) {
       return null;
     }
 
     try {
-      await controller.stopVideoRecording();
+      await widget.controller.stopVideoRecording();
     } on CameraException catch (e) {
       _showCameraException(e);
       return null;

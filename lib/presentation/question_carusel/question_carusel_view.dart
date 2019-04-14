@@ -3,7 +3,7 @@ import 'dart:ui';
 import 'dart:io';
 import 'dart:math';
 
-import 'package:flutter/services.dart';
+import 'package:camera/camera.dart';
 import 'package:path/path.dart';
 
 import 'package:flutter/cupertino.dart';
@@ -14,9 +14,6 @@ import 'package:flutter/rendering.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
-import 'package:yops_interview/app/globals.dart' as globals;
-
-import 'video_util.dart';
 import 'camera_example.dart';
 import 'question_carusel_presenter.dart';
 import 'question_carusel_model.dart';
@@ -31,7 +28,6 @@ class QuestionCaruselView extends StatefulWidget {
 
 class _QuestionCaruselViewState extends State<QuestionCaruselView> {
   Widget camera;
-  //SwiperController controller;
   List<String> assets = [];
   List<String> results = [];
   var scr = new GlobalKey();
@@ -40,8 +36,37 @@ class _QuestionCaruselViewState extends State<QuestionCaruselView> {
   @override
   void initState() {
     super.initState();
-    camera = CameraExampleHome(globals.cameras, _next);
-    // controller = SwiperController();
+    initCamera();
+  }
+
+  Future initCamera() async {
+    if (widget.model.cameraController == null) {
+      var cameras = widget.model.cameras;
+      print(cameras.length);
+      CameraDescription cameraDescription;
+      if (cameras.length > 1) {
+        cameraDescription = cameras[1];
+      }
+
+      CameraController cameraController;
+      if (cameraDescription != null) {
+        cameraController =
+            CameraController(cameraDescription, ResolutionPreset.high);
+      }
+      print("set new cameraController");
+      camera = CameraExampleHome(
+        controller: cameraController,
+        next: _next,
+      );
+      await cameraController.initialize();
+      widget.presenter.setCameraController(cameraController);
+    } else {
+      print("cameraController !=null");
+      camera = CameraExampleHome(
+        controller: widget.model.cameraController,
+        next: _next,
+      );
+    }
   }
 
   @override
@@ -76,7 +101,7 @@ class _QuestionCaruselViewState extends State<QuestionCaruselView> {
       //questionsWithCamera.add(question);
       questionsWithCamera.add(camera);
     }
-    questionsWithCamera.add(_last());
+    questionsWithCamera.add(_last(context));
 
     carusel = CarouselSlider(
       height: height,
@@ -93,13 +118,12 @@ class _QuestionCaruselViewState extends State<QuestionCaruselView> {
     return carusel;
   }
 
-  Widget _last() {
+  Widget _last(BuildContext context) {
     return Center(
       child: CupertinoButton(
         child: Text("share video"),
-        onPressed: () async {
-          //  results.insert(1, "assets/video/sample.mp4");
-          VideoUtil().encodeVideo(results);
+        onPressed: () {
+          widget.presenter.encodeVideo(context, results);
         },
       ),
     );
@@ -114,33 +138,40 @@ class _QuestionCaruselViewState extends State<QuestionCaruselView> {
   }
 
   Widget _question(String question, List<Color> colorScheme) {
-    
-
-
     return RepaintBoundary(
         key: scr,
         child: GestureDetector(
-            onTap: () async {
-              await _takeAScreenshot(question.hashCode.toString())
-                  .then((result) {
-                _next(result);
-              });
-            },
-            child: Container(
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  begin: Alignment.topRight,
-                  end: Alignment.bottomLeft,
-                  stops: [0.1, 0.5, 0.7, 0.9],
-                  colors: colorScheme,
+          onTap: () async {
+            await _takeAScreenshot(question.hashCode.toString()).then((result) {
+              _next(result);
+            });
+          },
+          child: Container(
+            color: Colors.black,
+            child: Padding(
+              padding: EdgeInsets.only(left: 6, top: 50, right: 6, bottom: 70),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(25),
+                child: Container(
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      begin: Alignment.topRight,
+                      end: Alignment.bottomLeft,
+                      stops: [0.1, 0.5, 0.7, 0.9],
+                      colors: colorScheme,
+                    ),
+                  ),
+                  child: Center(
+                    child: Text(
+                      question,
+                      style: TextStyle(fontSize: 17, color: Colors.white),
+                    ),
+                  ),
                 ),
               ),
-              child: Center(
-                  child: Text(
-                question,
-                style: TextStyle(fontSize: 17, color: Colors.white),
-              )),
-            )));
+            ),
+          ),
+        ));
   }
 
   List<Widget> renderListDots(int currentPage, int intOfDots) {
@@ -187,22 +218,4 @@ class _QuestionCaruselViewState extends State<QuestionCaruselView> {
     imgFile.writeAsBytes(pngBytes);
     return imgFile.path;
   }
-
-  // static Future<Directory> get tempDirectory async {
-  //   return await getTemporaryDirectory();
-  // }
-
-  // static Future<File> copyFileAssets(String assetName, String localName) async {
-  //   final ByteData assetByteData = await rootBundle.load(assetName);
-
-  //   final List<int> byteList = assetByteData.buffer
-  //       .asUint8List(assetByteData.offsetInBytes, assetByteData.lengthInBytes);
-
-  //   final String fullTemporaryPath =
-  //       join((await tempDirectory).path, localName);
-
-  //   return new File(fullTemporaryPath)
-  //       .writeAsBytes(byteList, mode: FileMode.writeOnly, flush: true);
-  // }
-
 }

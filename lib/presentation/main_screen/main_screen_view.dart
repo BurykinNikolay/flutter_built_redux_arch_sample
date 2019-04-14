@@ -159,13 +159,19 @@ class MainScreenView extends StatelessWidget {
                 borderRadius: BorderRadius.circular(8),
               ),
               child: Center(
-                  child: Text(
-                "$questionTitle",
-                style: TextStyle(
-                    color: Colors.white,
-                    fontFamily: "Montserrat",
-                    fontSize: 24),
-              )),
+                child: Container(
+                  constraints: BoxConstraints(maxWidth: 140, minHeight: 120),
+                  child: Center(
+                    child: Text(
+                      "$questionTitle",
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontFamily: "Montserrat",
+                          fontSize: 20),
+                    ),
+                  ),
+                ),
+              ),
             ));
       },
     );

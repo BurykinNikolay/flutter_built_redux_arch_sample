@@ -43,6 +43,11 @@ void _routeTo(MiddlewareApi<AppState, AppStateBuilder, AppActions> api,
               QuestionCarusel(routeSettings.arguments)));
       break;
 
+    case Routes.homeFromEditor:
+      api.actions.question.getQuestions();
+      navigatorKey.currentState.popUntil(ModalRoute.withName(Routes.home));
+      break;
+
     case Routes.underConstruction:
       navigatorKey.currentState.push(
         CupertinoPageRoute<void>(

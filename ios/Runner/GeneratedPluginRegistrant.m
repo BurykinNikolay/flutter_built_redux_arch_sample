@@ -7,7 +7,6 @@
 #import <cloud_firestore/CloudFirestorePlugin.h>
 #import <firebase_core/FirebaseCorePlugin.h>
 #import <flutter_ffmpeg/FlutterFFmpegPlugin.h>
-#import <image_picker/ImagePickerPlugin.h>
 #import <image_picker_saver/ImagePickerSaverPlugin.h>
 #import <keyboard_visibility/KeyboardVisibilityPlugin.h>
 #import <path_provider/PathProviderPlugin.h>
@@ -23,7 +22,6 @@
   [FLTCloudFirestorePlugin registerWithRegistrar:[registry registrarForPlugin:@"FLTCloudFirestorePlugin"]];
   [FLTFirebaseCorePlugin registerWithRegistrar:[registry registrarForPlugin:@"FLTFirebaseCorePlugin"]];
   [FlutterFFmpegPlugin registerWithRegistrar:[registry registrarForPlugin:@"FlutterFFmpegPlugin"]];
-  [FLTImagePickerPlugin registerWithRegistrar:[registry registrarForPlugin:@"FLTImagePickerPlugin"]];
   [FLTImagePickerSaverPlugin registerWithRegistrar:[registry registrarForPlugin:@"FLTImagePickerSaverPlugin"]];
   [FLTKeyboardVisibilityPlugin registerWithRegistrar:[registry registrarForPlugin:@"FLTKeyboardVisibilityPlugin"]];
   [FLTPathProviderPlugin registerWithRegistrar:[registry registrarForPlugin:@"FLTPathProviderPlugin"]];

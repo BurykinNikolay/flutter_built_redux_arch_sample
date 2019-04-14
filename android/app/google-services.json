@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "39015427322",
+    "firebase_url": "https://yopsinterview.firebaseio.com",
+    "project_id": "yopsinterview",
+    "storage_bucket": "yopsinterview.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:39015427322:android:ec178c00e7a5835f",
+        "android_client_info": {
+          "package_name": "com.yops.yopsInterview"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "39015427322-si2rm5chu3qbfh27h8n7lockivj4r12c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDvGbEDB0iTjN_-92kzJG_rfK5fGwsBu7s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "39015427322-si2rm5chu3qbfh27h8n7lockivj4r12c.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "39015427322-mvl6ockugfacuhnfcovpnl86ktd5n93o.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.yops.Interview"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

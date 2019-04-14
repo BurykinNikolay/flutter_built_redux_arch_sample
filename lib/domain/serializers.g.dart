@@ -9,11 +9,15 @@ part of serializers;
 Serializers _$serializers = (new Serializers().toBuilder()
       ..add(AppState.serializer)
       ..add(AppTab.serializer)
+      ..add(CameraState.serializer)
       ..add(GalleryActionModel.serializer)
       ..add(MainScreenState.serializer)
       ..add(QuestionsState.serializer)
       ..add(TabState.serializer)
       ..add(UserState.serializer)
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(CameraDescription)]),
+          () => new ListBuilder<CameraDescription>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(String)]),
           () => new ListBuilder<String>())
