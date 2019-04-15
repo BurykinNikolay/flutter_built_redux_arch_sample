@@ -8,9 +8,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:39015427322:android:ec178c00e7a5835f",
+        "mobilesdk_app_id": "1:39015427322:android:b235141f45cd14ea",
         "android_client_info": {
-          "package_name": "com.yops.yopsInterview"
+          "package_name": "com.example.yops_interview"
         }
       },
       "oauth_client": [
