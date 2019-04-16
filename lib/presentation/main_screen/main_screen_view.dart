@@ -118,7 +118,7 @@ class MainScreenView extends StatelessWidget {
       mainAxisSpacing: 10,
       crossAxisSpacing: 10,
       staggeredTileBuilder: (int index) => new StaggeredTile.fit(1),
-      itemCount: model.questions.keys.length,
+      itemCount: model?.questions?.keys?.length ?? 0,
       itemBuilder: (BuildContext context, int index) {
         String questionTitle = model.questions.keys.toList()[index];
         BuiltList<String> questionList =

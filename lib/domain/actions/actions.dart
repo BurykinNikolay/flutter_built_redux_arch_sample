@@ -14,6 +14,9 @@ export 'question_actions.dart';
 import 'camera_actions.dart';
 export 'camera_actions.dart';
 
+import 'carusel_actions.dart';
+export 'carusel_actions.dart';
+
 part 'actions.g.dart';
 
 abstract class AppActions extends ReduxActions {
@@ -25,6 +28,7 @@ abstract class AppActions extends ReduxActions {
   TabActions get tab;
   QuestionsAction get question;
   CameraAction get camera;
+  CaruselAction get carusel;
 
   factory AppActions() => new _$AppActions();
 }

@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:share_extend/share_extend.dart';
+import 'package:video_player/video_player.dart';
 
 import 'package:yops_interview/domain/actions/actions.dart';
 import 'package:yops_interview/presentation/components/components.dart';
@@ -18,6 +19,8 @@ class QuestionCaruselPresenter extends StatelessWidget {
   QuestionCaruselPresenter({Key key, this.model, this.actions})
       : super(key: key);
 
+  get videoController => null;
+
   @override
   Widget build(BuildContext context) {
     return QuestionCaruselView(
@@ -32,9 +35,21 @@ class QuestionCaruselPresenter extends StatelessWidget {
       Navigator.of(context).pop();
       if (outputFilePath == "error") {
       } else {
-        _shareFile(outputFilePath);
+        setPath(outputFilePath);
       }
     });
+  }
+
+  Future setPath(String outputFilePath) async {
+    final VideoPlayerController vcontroller =
+        VideoPlayerController.file(File(outputFilePath));
+    await vcontroller.initialize();
+
+    await vcontroller.setLooping(false);
+
+    await vcontroller.play();
+    actions.carusel.setPath(outputFilePath);
+    actions.carusel.setPlayer(vcontroller);
   }
 
   void startProgress(BuildContext context) {
@@ -52,9 +67,10 @@ class QuestionCaruselPresenter extends StatelessWidget {
     );
   }
 
-  void _shareFile(String outputFilePath) async {
-    var file = File(outputFilePath);
+  void shareFile() async {
+    var file = File(model.path);
     ShareExtend.share(file.path, "file");
+    actions.routeBack();
   }
 
   void setCameraController(CameraController controller) {

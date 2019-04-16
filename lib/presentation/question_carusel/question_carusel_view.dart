@@ -13,10 +13,13 @@ import 'package:flutter/rendering.dart';
 
 import 'package:path_provider/path_provider.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:percent_indicator/circular_percent_indicator.dart';
+import 'package:yops_interview/presentation/components/progress_bar.dart';
 
 import 'camera_example.dart';
 import 'question_carusel_presenter.dart';
 import 'question_carusel_model.dart';
+import 'video_player_preview.dart';
 
 class QuestionCaruselView extends StatefulWidget {
   final QuestionCaruselModel model;
@@ -97,16 +100,17 @@ class _QuestionCaruselViewState extends State<QuestionCaruselView> {
       var values = colors.toList();
       var colorScheme = values[_random.nextInt(values.length)];
       questionsWithCamera.add(_question(question, colorScheme));
-
-      //questionsWithCamera.add(question);
       questionsWithCamera.add(camera);
     }
-    questionsWithCamera.add(_last(context));
+    questionsWithCamera.add(_last());
 
     carusel = CarouselSlider(
       height: height,
       viewportFraction: 1.0,
       enableInfiniteScroll: false,
+      onPageChanged: (int index) {
+        _pageChanged(index, context);
+      },
       items: questionsWithCamera.map((widget) {
         return Builder(
           builder: (BuildContext context) {
@@ -115,16 +119,24 @@ class _QuestionCaruselViewState extends State<QuestionCaruselView> {
         );
       }).toList(),
     );
+
     return carusel;
   }
 
-  Widget _last(BuildContext context) {
-    return Center(
-      child: CupertinoButton(
-        child: Text("share video"),
-        onPressed: () {
-          widget.presenter.encodeVideo(context, results);
-        },
+  Widget _last() {
+    return Container(
+      color: Colors.black,
+      child: Padding(
+        padding: EdgeInsets.only(left: 6, top: 50, right: 6, bottom: 70),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(25),
+          child: Container(
+              child: VideoPlayerPreview(
+            player: widget.model.player,
+            repeat: _repeat,
+            share: widget.presenter.shareFile,
+          )),
+        ),
       ),
     );
   }
@@ -138,40 +150,59 @@ class _QuestionCaruselViewState extends State<QuestionCaruselView> {
   }
 
   Widget _question(String question, List<Color> colorScheme) {
-    return RepaintBoundary(
-        key: scr,
-        child: GestureDetector(
-          onTap: () async {
-            await _takeAScreenshot(question.hashCode.toString()).then((result) {
-              _next(result);
-            });
-          },
-          child: Container(
-            color: Colors.black,
-            child: Padding(
-              padding: EdgeInsets.only(left: 6, top: 50, right: 6, bottom: 70),
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(25),
-                child: Container(
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      begin: Alignment.topRight,
-                      end: Alignment.bottomLeft,
-                      stops: [0.1, 0.5, 0.7, 0.9],
-                      colors: colorScheme,
+    return Stack(children: <Widget>[
+      RepaintBoundary(
+          key: scr,
+          child: GestureDetector(
+            onTap: () async {
+              await _takeAScreenshot(question.hashCode.toString())
+                  .then((result) {
+                _next(result);
+              });
+            },
+            child: Container(
+              color: Colors.black,
+              child: Padding(
+                padding:
+                    EdgeInsets.only(left: 6, top: 50, right: 6, bottom: 70),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(25),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        begin: Alignment.topRight,
+                        end: Alignment.bottomLeft,
+                        stops: [0.1, 0.5, 0.7, 0.9],
+                        colors: colorScheme,
+                      ),
                     ),
-                  ),
-                  child: Center(
-                    child: Text(
-                      question,
-                      style: TextStyle(fontSize: 17, color: Colors.white),
+                    child: Center(
+                      child: Text(
+                        question,
+                        style: TextStyle(fontSize: 17, color: Colors.white),
+                      ),
                     ),
                   ),
                 ),
               ),
             ),
-          ),
-        ));
+          )),
+      Positioned(
+        top: 70,
+        right: 25,
+        child: CircularPercentIndicator(
+          addAutomaticKeepAlive: false,
+          radius: 25.0,
+          animation: true,
+          animationDuration: 3000,
+          lineWidth: 3.0,
+          percent: 1.0,
+          circularStrokeCap: CircularStrokeCap.butt,
+          backgroundColor: Colors.white.withOpacity(0.5),
+          progressColor: Colors.white,
+        ),
+      )
+    ]);
   }
 
   List<Widget> renderListDots(int currentPage, int intOfDots) {
@@ -200,7 +231,18 @@ class _QuestionCaruselViewState extends State<QuestionCaruselView> {
     );
   }
 
-  _next(String path) {
+  void _pageChanged(int index, BuildContext context) {
+    if (index == carusel.items.length - 1) {
+      widget.presenter.encodeVideo(context, results);
+    }
+  }
+
+  void _repeat() {
+    results = [];
+    carusel.animateToPage(0, duration: Duration(milliseconds: 300), curve: Curves.linear);
+  }
+
+  void _next(String path) {
     results.add(path);
     print(results);
     carusel.nextPage(

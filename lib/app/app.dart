@@ -20,7 +20,6 @@ import 'package:yops_interview/navigation/nav_key.dart';
 
 import 'package:yops_interview/presentation/presenters.dart';
 
-import 'package:yops_interview/localization/i18n.dart';
 import 'package:yops_interview/app/globals.dart' as globals;
 
 class YopsInterviewApp extends StatefulWidget {
@@ -43,7 +42,6 @@ class YopsInterviewAppState extends State<YopsInterviewApp> {
       store: globals.store,
       child: MaterialApp(
         navigatorKey: NavKey.navKey,
-        supportedLocales: S.delegate.supportedLocales,
         title: "yops_interview",
         routes: routes,
         initialRoute: Routes.home,
