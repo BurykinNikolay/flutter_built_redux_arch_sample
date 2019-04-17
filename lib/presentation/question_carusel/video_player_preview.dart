@@ -44,6 +44,7 @@ class _VideoPlayerPreviewState extends State<VideoPlayerPreview> {
 
   Widget _thumbnailWidget() {
     var videoController = widget.player;
+
     return Expanded(
       child: Align(
         alignment: Alignment.centerRight,
@@ -74,6 +75,7 @@ class _VideoPlayerPreviewState extends State<VideoPlayerPreview> {
                     if (widget.player.value.isPlaying) {
                       widget.player.pause();
                     } else {
+                      widget.player.seekTo(Duration(milliseconds: 0));
                       widget.player.play();
                     }
                   });

@@ -14,7 +14,7 @@ import 'package:flutter/rendering.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
-import 'package:yops_interview/presentation/components/progress_bar.dart';
+import 'package:uuid/uuid.dart';
 
 import 'camera_example.dart';
 import 'question_carusel_presenter.dart';
@@ -33,6 +33,8 @@ class _QuestionCaruselViewState extends State<QuestionCaruselView> {
   Widget camera;
   List<String> assets = [];
   List<String> results = [];
+  List<int> indexList = [];
+
   var scr = new GlobalKey();
   CarouselSlider carusel;
 
@@ -40,6 +42,10 @@ class _QuestionCaruselViewState extends State<QuestionCaruselView> {
   void initState() {
     super.initState();
     initCamera();
+    Future.delayed(const Duration(milliseconds: 3000)).then((result) async {
+      var uuid = new Uuid();
+      _nextItem(uuid.v1());
+    });
   }
 
   Future initCamera() async {
@@ -81,6 +87,7 @@ class _QuestionCaruselViewState extends State<QuestionCaruselView> {
   Widget _fullScreenGallery(BuildContext context, double height) {
     List<String> questions = widget.model.questionList;
     List<Widget> questionsWithCamera = [];
+    int index = 0;
     for (String question in questions) {
       List<List<Color>> colors = [
         [
@@ -99,8 +106,12 @@ class _QuestionCaruselViewState extends State<QuestionCaruselView> {
       final _random = new Random();
       var values = colors.toList();
       var colorScheme = values[_random.nextInt(values.length)];
-      questionsWithCamera.add(_question(question, colorScheme));
+      final questionItem = _question(question, colorScheme);
+      indexList.add(index);
+      questionsWithCamera.add(questionItem);
+      index += 1;
       questionsWithCamera.add(camera);
+      index += 1;
     }
     questionsWithCamera.add(_last());
 
@@ -130,12 +141,14 @@ class _QuestionCaruselViewState extends State<QuestionCaruselView> {
         padding: EdgeInsets.only(left: 6, top: 50, right: 6, bottom: 70),
         child: ClipRRect(
           borderRadius: BorderRadius.circular(25),
-          child: Container(
-              child: VideoPlayerPreview(
-            player: widget.model.player,
-            repeat: _repeat,
-            share: widget.presenter.shareFile,
-          )),
+          child: widget?.model?.player != null
+              ? Container(
+                  child: VideoPlayerPreview(
+                  player: widget.model.player,
+                  repeat: _repeat,
+                  share: widget.presenter.shareFile,
+                ))
+              : Container(),
         ),
       ),
     );
@@ -188,20 +201,19 @@ class _QuestionCaruselViewState extends State<QuestionCaruselView> {
             ),
           )),
       Positioned(
-        top: 70,
-        right: 25,
-        child: CircularPercentIndicator(
-          addAutomaticKeepAlive: false,
-          radius: 25.0,
-          animation: true,
-          animationDuration: 3000,
-          lineWidth: 3.0,
-          percent: 1.0,
-          circularStrokeCap: CircularStrokeCap.butt,
-          backgroundColor: Colors.white.withOpacity(0.5),
-          progressColor: Colors.white,
-        ),
-      )
+          top: 70,
+          right: 25,
+          child: CircularPercentIndicator(
+            addAutomaticKeepAlive: false,
+            radius: 25.0,
+            animation: true,
+            animationDuration: 3000,
+            lineWidth: 3.0,
+            percent: 1.0,
+            circularStrokeCap: CircularStrokeCap.butt,
+            backgroundColor: Colors.white.withOpacity(0.5),
+            progressColor: Colors.white,
+          ))
     ]);
   }
 
@@ -232,6 +244,12 @@ class _QuestionCaruselViewState extends State<QuestionCaruselView> {
   }
 
   void _pageChanged(int index, BuildContext context) {
+    if (indexList.contains(index) && index != carusel.items.length - 1) {
+      Future.delayed(const Duration(milliseconds: 3000)).then((result) async {
+        var uuid = new Uuid();
+        _nextItem(uuid.v1());
+      });
+    }
     if (index == carusel.items.length - 1) {
       widget.presenter.encodeVideo(context, results);
     }
@@ -239,7 +257,16 @@ class _QuestionCaruselViewState extends State<QuestionCaruselView> {
 
   void _repeat() {
     results = [];
-    carusel.animateToPage(0, duration: Duration(milliseconds: 300), curve: Curves.linear);
+    indexList = [];
+    carusel
+        .animateToPage(0,
+            duration: Duration(milliseconds: 300), curve: Curves.linear)
+        .then((result) {
+      Future.delayed(const Duration(milliseconds: 3000)).then((result) async {
+        var uuid = new Uuid();
+        _nextItem(uuid.v1());
+      });
+    });
   }
 
   void _next(String path) {
@@ -259,5 +286,11 @@ class _QuestionCaruselViewState extends State<QuestionCaruselView> {
     File imgFile = new File('$directory/screenshot$hashcode.png');
     imgFile.writeAsBytes(pngBytes);
     return imgFile.path;
+  }
+
+  Future _nextItem(String question) async {
+    await _takeAScreenshot(question.hashCode.toString()).then((result) {
+      _next(result);
+    });
   }
 }
