@@ -144,10 +144,6 @@
         "source": "/Users/nikolajburykin/.gradle/caches/transforms-1/files-1.1/appcompat-1.0.0.aar/8bee3e4993e69143bf901ff3e0eba01e/res/drawable/abc_textfield_search_material.xml"
     },
     {
-        "merged": "/Users/nikolajburykin/yops_interview/build/app/intermediates/res/merged/debug/mipmap-mdpi-v4_ic_launcher_round.png.flat",
-        "source": "/Users/nikolajburykin/.gradle/caches/transforms-1/files-1.1/mobile-ffmpeg-https-4.2.LTS.aar/44e2f90b4c125eed2703703e52c056cb/res/mipmap-mdpi-v4/ic_launcher_round.png"
-    },
-    {
         "merged": "/Users/nikolajburykin/yops_interview/build/app/intermediates/res/merged/debug/layout_abc_cascading_menu_item_layout.xml.flat",
         "source": "/Users/nikolajburykin/.gradle/caches/transforms-1/files-1.1/appcompat-1.0.0.aar/8bee3e4993e69143bf901ff3e0eba01e/res/layout/abc_cascading_menu_item_layout.xml"
     },
@@ -660,10 +656,6 @@
         "source": "/Users/nikolajburykin/.gradle/caches/transforms-1/files-1.1/appcompat-1.0.0.aar/8bee3e4993e69143bf901ff3e0eba01e/res/layout/abc_action_bar_up_container.xml"
     },
     {
-        "merged": "/Users/nikolajburykin/yops_interview/build/app/intermediates/res/merged/debug/mipmap-hdpi-v4_ic_launcher_round.png.flat",
-        "source": "/Users/nikolajburykin/.gradle/caches/transforms-1/files-1.1/mobile-ffmpeg-https-4.2.LTS.aar/44e2f90b4c125eed2703703e52c056cb/res/mipmap-hdpi-v4/ic_launcher_round.png"
-    },
-    {
         "merged": "/Users/nikolajburykin/yops_interview/build/app/intermediates/res/merged/debug/drawable-xhdpi-v4_googleg_standard_color_18.png.flat",
         "source": "/Users/nikolajburykin/.gradle/caches/transforms-1/files-1.1/jetified-play-services-base-16.0.1.aar/26ae0eb385437764d328b393e227d572/res/drawable-xhdpi-v4/googleg_standard_color_18.png"
     },
@@ -1160,6 +1152,10 @@
         "source": "/Users/nikolajburykin/.gradle/caches/transforms-1/files-1.1/jetified-play-services-base-16.0.1.aar/26ae0eb385437764d328b393e227d572/res/drawable/common_google_signin_btn_icon_disabled.xml"
     },
     {
+        "merged": "/Users/nikolajburykin/yops_interview/build/app/intermediates/res/merged/debug/layout_abc_screen_toolbar.xml.flat",
+        "source": "/Users/nikolajburykin/.gradle/caches/transforms-1/files-1.1/appcompat-1.0.0.aar/8bee3e4993e69143bf901ff3e0eba01e/res/layout/abc_screen_toolbar.xml"
+    },
+    {
         "merged": "/Users/nikolajburykin/yops_interview/build/app/intermediates/res/merged/debug/drawable_abc_list_selector_holo_dark.xml.flat",
         "source": "/Users/nikolajburykin/.gradle/caches/transforms-1/files-1.1/appcompat-1.0.0.aar/8bee3e4993e69143bf901ff3e0eba01e/res/drawable/abc_list_selector_holo_dark.xml"
     },
@@ -1322,10 +1318,6 @@
     {
         "merged": "/Users/nikolajburykin/yops_interview/build/app/intermediates/res/merged/debug/drawable-hdpi-v4_common_google_signin_btn_text_dark_normal_background.9.png.flat",
         "source": "/Users/nikolajburykin/.gradle/caches/transforms-1/files-1.1/jetified-play-services-base-16.0.1.aar/26ae0eb385437764d328b393e227d572/res/drawable-hdpi-v4/common_google_signin_btn_text_dark_normal_background.9.png"
-    },
-    {
-        "merged": "/Users/nikolajburykin/yops_interview/build/app/intermediates/res/merged/debug/mipmap-xxxhdpi-v4_ic_launcher_round.png.flat",
-        "source": "/Users/nikolajburykin/.gradle/caches/transforms-1/files-1.1/mobile-ffmpeg-https-4.2.LTS.aar/44e2f90b4c125eed2703703e52c056cb/res/mipmap-xxxhdpi-v4/ic_launcher_round.png"
     },
     {
         "merged": "/Users/nikolajburykin/yops_interview/build/app/intermediates/res/merged/debug/color_abc_search_url_text.xml.flat",
@@ -1496,10 +1488,6 @@
         "source": "/Users/nikolajburykin/.gradle/caches/transforms-1/files-1.1/appcompat-1.0.0.aar/8bee3e4993e69143bf901ff3e0eba01e/res/drawable-hdpi-v4/abc_textfield_default_mtrl_alpha.9.png"
     },
     {
-        "merged": "/Users/nikolajburykin/yops_interview/build/app/intermediates/res/merged/debug/mipmap-xxhdpi-v4_ic_launcher_round.png.flat",
-        "source": "/Users/nikolajburykin/.gradle/caches/transforms-1/files-1.1/mobile-ffmpeg-https-4.2.LTS.aar/44e2f90b4c125eed2703703e52c056cb/res/mipmap-xxhdpi-v4/ic_launcher_round.png"
-    },
-    {
         "merged": "/Users/nikolajburykin/yops_interview/build/app/intermediates/res/merged/debug/drawable_abc_cab_background_internal_bg.xml.flat",
         "source": "/Users/nikolajburykin/.gradle/caches/transforms-1/files-1.1/appcompat-1.0.0.aar/8bee3e4993e69143bf901ff3e0eba01e/res/drawable/abc_cab_background_internal_bg.xml"
     },
@@ -1534,10 +1522,6 @@
     {
         "merged": "/Users/nikolajburykin/yops_interview/build/app/intermediates/res/merged/debug/anim_abc_slide_out_bottom.xml.flat",
         "source": "/Users/nikolajburykin/.gradle/caches/transforms-1/files-1.1/appcompat-1.0.0.aar/8bee3e4993e69143bf901ff3e0eba01e/res/anim/abc_slide_out_bottom.xml"
-    },
-    {
-        "merged": "/Users/nikolajburykin/yops_interview/build/app/intermediates/res/merged/debug/mipmap-xhdpi-v4_ic_launcher_round.png.flat",
-        "source": "/Users/nikolajburykin/.gradle/caches/transforms-1/files-1.1/mobile-ffmpeg-https-4.2.LTS.aar/44e2f90b4c125eed2703703e52c056cb/res/mipmap-xhdpi-v4/ic_launcher_round.png"
     },
     {
         "merged": "/Users/nikolajburykin/yops_interview/build/app/intermediates/res/merged/debug/drawable_abc_ratingbar_small_material.xml.flat",

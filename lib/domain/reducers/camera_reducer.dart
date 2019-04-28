@@ -1,4 +1,3 @@
-import 'package:built_collection/built_collection.dart';
 import 'package:built_redux/built_redux.dart';
 import 'package:camera/camera.dart';
 import 'package:yops_interview/domain/actions/actions.dart';
@@ -12,6 +11,9 @@ NestedReducerBuilder<AppState, AppStateBuilder, CameraState, CameraStateBuilder>
       ..add<List<CameraDescription>>(CameraActionNames.setCameras, _setCameras)
       ..add<CameraDescription>(
           CameraActionNames.setCameraDescription, _setCameraDescription)
+      ..add<String>(CameraActionNames.setCurrentFilePath, _setCurrentFilePath)
+      ..add<void>(CameraActionNames.stop, _stop)
+      ..add<String>(CameraActionNames.start, _start)
       ..add<CameraController>(
           CameraActionNames.setCameraController, _setCameraController);
 
@@ -29,3 +31,16 @@ _setCameraController(CameraState state, Action<CameraController> action,
     CameraStateBuilder builder) {
   builder.cameraController = action.payload;
 }
+
+_setCurrentFilePath(
+    CameraState state, Action<String> action, CameraStateBuilder builder) {
+  builder.currentFilePath = action.payload;
+}
+
+_start(CameraState state, Action<String> action,
+    CameraStateBuilder builder) async {
+  builder.currentFilePath = action.payload;
+}
+
+_stop(
+    CameraState state, Action<void> action, CameraStateBuilder builder) async {}

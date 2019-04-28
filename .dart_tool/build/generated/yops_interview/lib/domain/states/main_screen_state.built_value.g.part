@@ -50,7 +50,7 @@ class _$MainScreenState extends MainScreenState {
   @override
   final bool loading;
 
-  factory _$MainScreenState([void updates(MainScreenStateBuilder b)]) =>
+  factory _$MainScreenState([void Function(MainScreenStateBuilder) updates]) =>
       (new MainScreenStateBuilder()..update(updates)).build();
 
   _$MainScreenState._({this.loading}) : super._() {
@@ -60,7 +60,7 @@ class _$MainScreenState extends MainScreenState {
   }
 
   @override
-  MainScreenState rebuild(void updates(MainScreenStateBuilder b)) =>
+  MainScreenState rebuild(void Function(MainScreenStateBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
@@ -113,7 +113,7 @@ class MainScreenStateBuilder
   }
 
   @override
-  void update(void updates(MainScreenStateBuilder b)) {
+  void update(void Function(MainScreenStateBuilder) updates) {
     if (updates != null) updates(this);
   }
 

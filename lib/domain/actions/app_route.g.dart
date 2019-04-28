@@ -14,7 +14,7 @@ class _$AppRoute extends AppRoute {
   @override
   final BuildContext context;
 
-  factory _$AppRoute([void updates(AppRouteBuilder b)]) =>
+  factory _$AppRoute([void Function(AppRouteBuilder) updates]) =>
       (new AppRouteBuilder()..update(updates)).build();
 
   _$AppRoute._({this.route, this.arguments, this.context}) : super._() {
@@ -24,7 +24,7 @@ class _$AppRoute extends AppRoute {
   }
 
   @override
-  AppRoute rebuild(void updates(AppRouteBuilder b)) =>
+  AppRoute rebuild(void Function(AppRouteBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
@@ -91,7 +91,7 @@ class AppRouteBuilder implements Builder<AppRoute, AppRouteBuilder> {
   }
 
   @override
-  void update(void updates(AppRouteBuilder b)) {
+  void update(void Function(AppRouteBuilder) updates) {
     if (updates != null) updates(this);
   }
 

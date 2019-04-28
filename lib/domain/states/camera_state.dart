@@ -13,6 +13,9 @@ abstract class CameraState implements Built<CameraState, CameraStateBuilder> {
   @nullable
   BuiltList<CameraDescription> get cameras;
 
+  @nullable
+  String get currentFilePath;
+
   CameraState._();
 
   factory CameraState([updates(CameraStateBuilder b)]) =>

@@ -107,7 +107,8 @@ class _$GalleryActionModel extends GalleryActionModel {
   @override
   final bool fullScreen;
 
-  factory _$GalleryActionModel([void updates(GalleryActionModelBuilder b)]) =>
+  factory _$GalleryActionModel(
+          [void Function(GalleryActionModelBuilder) updates]) =>
       (new GalleryActionModelBuilder()..update(updates)).build();
 
   _$GalleryActionModel._(
@@ -115,7 +116,8 @@ class _$GalleryActionModel extends GalleryActionModel {
       : super._();
 
   @override
-  GalleryActionModel rebuild(void updates(GalleryActionModelBuilder b)) =>
+  GalleryActionModel rebuild(
+          void Function(GalleryActionModelBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
@@ -201,7 +203,7 @@ class GalleryActionModelBuilder
   }
 
   @override
-  void update(void updates(GalleryActionModelBuilder b)) {
+  void update(void Function(GalleryActionModelBuilder) updates) {
     if (updates != null) updates(this);
   }
 

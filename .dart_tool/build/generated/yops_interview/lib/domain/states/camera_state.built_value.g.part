@@ -33,6 +33,12 @@ class _$CameraStateSerializer implements StructuredSerializer<CameraState> {
             specifiedType: const FullType(
                 BuiltList, const [const FullType(CameraDescription)])));
     }
+    if (object.currentFilePath != null) {
+      result
+        ..add('currentFilePath')
+        ..add(serializers.serialize(object.currentFilePath,
+            specifiedType: const FullType(String)));
+    }
 
     return result;
   }
@@ -64,6 +70,10 @@ class _$CameraStateSerializer implements StructuredSerializer<CameraState> {
                       BuiltList, const [const FullType(CameraDescription)]))
               as BuiltList);
           break;
+        case 'currentFilePath':
+          result.currentFilePath = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String;
+          break;
       }
     }
 
@@ -78,15 +88,21 @@ class _$CameraState extends CameraState {
   final CameraController cameraController;
   @override
   final BuiltList<CameraDescription> cameras;
+  @override
+  final String currentFilePath;
 
-  factory _$CameraState([void updates(CameraStateBuilder b)]) =>
+  factory _$CameraState([void Function(CameraStateBuilder) updates]) =>
       (new CameraStateBuilder()..update(updates)).build();
 
-  _$CameraState._({this.cameraDescription, this.cameraController, this.cameras})
+  _$CameraState._(
+      {this.cameraDescription,
+      this.cameraController,
+      this.cameras,
+      this.currentFilePath})
       : super._();
 
   @override
-  CameraState rebuild(void updates(CameraStateBuilder b)) =>
+  CameraState rebuild(void Function(CameraStateBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
@@ -98,14 +114,16 @@ class _$CameraState extends CameraState {
     return other is CameraState &&
         cameraDescription == other.cameraDescription &&
         cameraController == other.cameraController &&
-        cameras == other.cameras;
+        cameras == other.cameras &&
+        currentFilePath == other.currentFilePath;
   }
 
   @override
   int get hashCode {
     return $jf($jc(
-        $jc($jc(0, cameraDescription.hashCode), cameraController.hashCode),
-        cameras.hashCode));
+        $jc($jc($jc(0, cameraDescription.hashCode), cameraController.hashCode),
+            cameras.hashCode),
+        currentFilePath.hashCode));
   }
 
   @override
@@ -113,7 +131,8 @@ class _$CameraState extends CameraState {
     return (newBuiltValueToStringHelper('CameraState')
           ..add('cameraDescription', cameraDescription)
           ..add('cameraController', cameraController)
-          ..add('cameras', cameras))
+          ..add('cameras', cameras)
+          ..add('currentFilePath', currentFilePath))
         .toString();
   }
 }
@@ -137,6 +156,11 @@ class CameraStateBuilder implements Builder<CameraState, CameraStateBuilder> {
   set cameras(ListBuilder<CameraDescription> cameras) =>
       _$this._cameras = cameras;
 
+  String _currentFilePath;
+  String get currentFilePath => _$this._currentFilePath;
+  set currentFilePath(String currentFilePath) =>
+      _$this._currentFilePath = currentFilePath;
+
   CameraStateBuilder();
 
   CameraStateBuilder get _$this {
@@ -144,6 +168,7 @@ class CameraStateBuilder implements Builder<CameraState, CameraStateBuilder> {
       _cameraDescription = _$v.cameraDescription;
       _cameraController = _$v.cameraController;
       _cameras = _$v.cameras?.toBuilder();
+      _currentFilePath = _$v.currentFilePath;
       _$v = null;
     }
     return this;
@@ -158,7 +183,7 @@ class CameraStateBuilder implements Builder<CameraState, CameraStateBuilder> {
   }
 
   @override
-  void update(void updates(CameraStateBuilder b)) {
+  void update(void Function(CameraStateBuilder) updates) {
     if (updates != null) updates(this);
   }
 
@@ -170,7 +195,8 @@ class CameraStateBuilder implements Builder<CameraState, CameraStateBuilder> {
           new _$CameraState._(
               cameraDescription: cameraDescription,
               cameraController: cameraController,
-              cameras: _cameras?.build());
+              cameras: _cameras?.build(),
+              currentFilePath: currentFilePath);
     } catch (_) {
       String _$failedField;
       try {

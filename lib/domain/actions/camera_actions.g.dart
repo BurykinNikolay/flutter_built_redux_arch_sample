@@ -21,12 +21,21 @@ class _$CameraAction extends CameraAction {
   final ActionDispatcher<CameraController> setCameraController =
       new ActionDispatcher<CameraController>(
           'CameraAction-setCameraController');
+  final ActionDispatcher<String> setCurrentFilePath =
+      new ActionDispatcher<String>('CameraAction-setCurrentFilePath');
+  final ActionDispatcher<String> start =
+      new ActionDispatcher<String>('CameraAction-start');
+  final ActionDispatcher<void> stop =
+      new ActionDispatcher<void>('CameraAction-stop');
 
   @override
   void setDispatcher(Dispatcher dispatcher) {
     setCameras.setDispatcher(dispatcher);
     setCameraDescription.setDispatcher(dispatcher);
     setCameraController.setDispatcher(dispatcher);
+    setCurrentFilePath.setDispatcher(dispatcher);
+    start.setDispatcher(dispatcher);
+    stop.setDispatcher(dispatcher);
   }
 }
 
@@ -37,4 +46,10 @@ class CameraActionNames {
       new ActionName<CameraDescription>('CameraAction-setCameraDescription');
   static final ActionName<CameraController> setCameraController =
       new ActionName<CameraController>('CameraAction-setCameraController');
+  static final ActionName<String> setCurrentFilePath =
+      new ActionName<String>('CameraAction-setCurrentFilePath');
+  static final ActionName<String> start =
+      new ActionName<String>('CameraAction-start');
+  static final ActionName<void> stop =
+      new ActionName<void>('CameraAction-stop');
 }

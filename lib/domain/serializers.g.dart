@@ -10,8 +10,8 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(AppState.serializer)
       ..add(AppTab.serializer)
       ..add(CameraState.serializer)
-      ..add(CaruselState.serializer)
       ..add(GalleryActionModel.serializer)
+      ..add(InterviewState.serializer)
       ..add(MainScreenState.serializer)
       ..add(QuestionsState.serializer)
       ..add(TabState.serializer)
@@ -19,6 +19,12 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(CameraDescription)]),
           () => new ListBuilder<CameraDescription>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(String)]),
           () => new ListBuilder<String>())

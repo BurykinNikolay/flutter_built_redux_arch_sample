@@ -9,7 +9,7 @@ import 'package:yops_interview/domain/actions/actions.dart';
 import 'package:yops_interview/domain/states/app_state.dart';
 import 'package:yops_interview/navigation/routes.dart';
 import 'package:yops_interview/navigation/nav_key.dart';
-import 'package:yops_interview/presentation/presenters.dart';
+import 'package:yops_interview/presentation/presentation.dart';
 
 Store store;
 
@@ -37,10 +37,9 @@ void _routeTo(MiddlewareApi<AppState, AppStateBuilder, AppActions> api,
       navigatorKey.currentState.push(CupertinoPageRoute<void>(
           builder: (BuildContext context) => QuestionEditor()));
       break;
-    case Routes.questionCarusel:
+    case Routes.interview:
       navigatorKey.currentState.push(CupertinoPageRoute<void>(
-          builder: (BuildContext context) =>
-              QuestionCarusel(routeSettings.arguments)));
+          builder: (BuildContext context) => Interview()));
       break;
 
     case Routes.homeFromEditor:

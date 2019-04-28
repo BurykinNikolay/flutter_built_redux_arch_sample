@@ -66,7 +66,7 @@ class _QuestionEditorViewState extends State<QuestionEditorView> {
     );
   }
 
-  Widget _saveAndSendButton() {
+  Widget saveAndSendButton() {
     return Positioned(
       left: 25,
       right: 25,

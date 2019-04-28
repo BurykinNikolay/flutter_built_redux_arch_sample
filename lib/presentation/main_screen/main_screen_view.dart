@@ -2,8 +2,6 @@ import 'package:built_collection/built_collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
-import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-
 import 'main_screen_presenter.dart';
 import 'main_screen_model.dart';
 
@@ -110,14 +108,12 @@ class MainScreenView extends StatelessWidget {
   }
 
   Widget _questionGrid() {
-    return StaggeredGridView.countBuilder(
+    return GridView.builder(
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2, mainAxisSpacing: 10, crossAxisSpacing: 10),
       physics: NeverScrollableScrollPhysics(),
       shrinkWrap: true,
       padding: EdgeInsets.only(left: 10, top: 15, right: 10),
-      crossAxisCount: 2,
-      mainAxisSpacing: 10,
-      crossAxisSpacing: 10,
-      staggeredTileBuilder: (int index) => new StaggeredTile.fit(1),
       itemCount: model?.questions?.keys?.length ?? 0,
       itemBuilder: (BuildContext context, int index) {
         String questionTitle = model.questions.keys.toList()[index];
@@ -142,7 +138,7 @@ class MainScreenView extends StatelessWidget {
         }
         return GestureDetector(
             onTap: () {
-              presenter.openQuestionCarusel(questionList.toList());
+              presenter.openInterview(questionList);
             },
             child: Container(
               height: 148,

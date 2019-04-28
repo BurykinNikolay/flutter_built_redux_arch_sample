@@ -52,7 +52,7 @@ class _$TabState extends TabState {
   @override
   final AppTab activeTab;
 
-  factory _$TabState([void updates(TabStateBuilder b)]) =>
+  factory _$TabState([void Function(TabStateBuilder) updates]) =>
       (new TabStateBuilder()..update(updates)).build();
 
   _$TabState._({this.activeTab}) : super._() {
@@ -62,7 +62,7 @@ class _$TabState extends TabState {
   }
 
   @override
-  TabState rebuild(void updates(TabStateBuilder b)) =>
+  TabState rebuild(void Function(TabStateBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
@@ -113,7 +113,7 @@ class TabStateBuilder implements Builder<TabState, TabStateBuilder> {
   }
 
   @override
-  void update(void updates(TabStateBuilder b)) {
+  void update(void Function(TabStateBuilder) updates) {
     if (updates != null) updates(this);
   }
 

@@ -15,7 +15,7 @@ abstract class AppState implements Built<AppState, AppStateBuilder> {
     ..mainScreenState = MainScreenState((b) => b).toBuilder()
     ..questionState = QuestionsState((b) => b).toBuilder()
     ..cameraState = CameraState((b) => b).toBuilder()
-    ..caruselState = CaruselState((b) => b).toBuilder()
+    ..interviewState = InterviewState((b) => b).toBuilder()
     ..update(updates));
 
   static Serializer<AppState> get serializer => _$appStateSerializer;
@@ -25,5 +25,5 @@ abstract class AppState implements Built<AppState, AppStateBuilder> {
   UserState get userState;
   QuestionsState get questionState;
   CameraState get cameraState;
-  CaruselState get caruselState;
+  InterviewState get interviewState;
 }

@@ -20,7 +20,7 @@ class _$AppActions extends AppActions {
   final TabActions tab = new TabActions();
   final QuestionsAction question = new QuestionsAction();
   final CameraAction camera = new CameraAction();
-  final CaruselAction carusel = new CaruselAction();
+  final InterviewAction interview = new InterviewAction();
 
   @override
   void setDispatcher(Dispatcher dispatcher) {
@@ -29,7 +29,7 @@ class _$AppActions extends AppActions {
     tab.setDispatcher(dispatcher);
     question.setDispatcher(dispatcher);
     camera.setDispatcher(dispatcher);
-    carusel.setDispatcher(dispatcher);
+    interview.setDispatcher(dispatcher);
   }
 }
 

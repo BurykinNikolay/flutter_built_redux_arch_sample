@@ -18,7 +18,7 @@ import 'package:yops_interview/domain/actions/actions.dart';
 import 'package:yops_interview/navigation/routes.dart';
 import 'package:yops_interview/navigation/nav_key.dart';
 
-import 'package:yops_interview/presentation/presenters.dart';
+import 'package:yops_interview/presentation/presentation.dart';
 
 import 'package:yops_interview/app/globals.dart' as globals;
 

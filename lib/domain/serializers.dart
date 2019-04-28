@@ -14,7 +14,7 @@ part 'serializers.g.dart';
   AppState,
   CameraState,
   TabState,
-  CaruselState,
+  InterviewState,
   QuestionsState,
   Error,
   GalleryActionModel,

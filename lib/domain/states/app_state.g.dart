@@ -33,9 +33,9 @@ class _$AppStateSerializer implements StructuredSerializer<AppState> {
       'cameraState',
       serializers.serialize(object.cameraState,
           specifiedType: const FullType(CameraState)),
-      'caruselState',
-      serializers.serialize(object.caruselState,
-          specifiedType: const FullType(CaruselState)),
+      'interviewState',
+      serializers.serialize(object.interviewState,
+          specifiedType: const FullType(InterviewState)),
     ];
 
     return result;
@@ -73,9 +73,9 @@ class _$AppStateSerializer implements StructuredSerializer<AppState> {
           result.cameraState.replace(serializers.deserialize(value,
               specifiedType: const FullType(CameraState)) as CameraState);
           break;
-        case 'caruselState':
-          result.caruselState.replace(serializers.deserialize(value,
-              specifiedType: const FullType(CaruselState)) as CaruselState);
+        case 'interviewState':
+          result.interviewState.replace(serializers.deserialize(value,
+              specifiedType: const FullType(InterviewState)) as InterviewState);
           break;
       }
     }
@@ -96,9 +96,9 @@ class _$AppState extends AppState {
   @override
   final CameraState cameraState;
   @override
-  final CaruselState caruselState;
+  final InterviewState interviewState;
 
-  factory _$AppState([void updates(AppStateBuilder b)]) =>
+  factory _$AppState([void Function(AppStateBuilder) updates]) =>
       (new AppStateBuilder()..update(updates)).build();
 
   _$AppState._(
@@ -107,7 +107,7 @@ class _$AppState extends AppState {
       this.userState,
       this.questionState,
       this.cameraState,
-      this.caruselState})
+      this.interviewState})
       : super._() {
     if (tabState == null) {
       throw new BuiltValueNullFieldError('AppState', 'tabState');
@@ -124,13 +124,13 @@ class _$AppState extends AppState {
     if (cameraState == null) {
       throw new BuiltValueNullFieldError('AppState', 'cameraState');
     }
-    if (caruselState == null) {
-      throw new BuiltValueNullFieldError('AppState', 'caruselState');
+    if (interviewState == null) {
+      throw new BuiltValueNullFieldError('AppState', 'interviewState');
     }
   }
 
   @override
-  AppState rebuild(void updates(AppStateBuilder b)) =>
+  AppState rebuild(void Function(AppStateBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
@@ -145,7 +145,7 @@ class _$AppState extends AppState {
         userState == other.userState &&
         questionState == other.questionState &&
         cameraState == other.cameraState &&
-        caruselState == other.caruselState;
+        interviewState == other.interviewState;
   }
 
   @override
@@ -157,7 +157,7 @@ class _$AppState extends AppState {
                     userState.hashCode),
                 questionState.hashCode),
             cameraState.hashCode),
-        caruselState.hashCode));
+        interviewState.hashCode));
   }
 
   @override
@@ -168,7 +168,7 @@ class _$AppState extends AppState {
           ..add('userState', userState)
           ..add('questionState', questionState)
           ..add('cameraState', cameraState)
-          ..add('caruselState', caruselState))
+          ..add('interviewState', interviewState))
         .toString();
   }
 }
@@ -203,11 +203,11 @@ class AppStateBuilder implements Builder<AppState, AppStateBuilder> {
   set cameraState(CameraStateBuilder cameraState) =>
       _$this._cameraState = cameraState;
 
-  CaruselStateBuilder _caruselState;
-  CaruselStateBuilder get caruselState =>
-      _$this._caruselState ??= new CaruselStateBuilder();
-  set caruselState(CaruselStateBuilder caruselState) =>
-      _$this._caruselState = caruselState;
+  InterviewStateBuilder _interviewState;
+  InterviewStateBuilder get interviewState =>
+      _$this._interviewState ??= new InterviewStateBuilder();
+  set interviewState(InterviewStateBuilder interviewState) =>
+      _$this._interviewState = interviewState;
 
   AppStateBuilder();
 
@@ -218,7 +218,7 @@ class AppStateBuilder implements Builder<AppState, AppStateBuilder> {
       _userState = _$v.userState?.toBuilder();
       _questionState = _$v.questionState?.toBuilder();
       _cameraState = _$v.cameraState?.toBuilder();
-      _caruselState = _$v.caruselState?.toBuilder();
+      _interviewState = _$v.interviewState?.toBuilder();
       _$v = null;
     }
     return this;
@@ -233,7 +233,7 @@ class AppStateBuilder implements Builder<AppState, AppStateBuilder> {
   }
 
   @override
-  void update(void updates(AppStateBuilder b)) {
+  void update(void Function(AppStateBuilder) updates) {
     if (updates != null) updates(this);
   }
 
@@ -248,7 +248,7 @@ class AppStateBuilder implements Builder<AppState, AppStateBuilder> {
               userState: userState.build(),
               questionState: questionState.build(),
               cameraState: cameraState.build(),
-              caruselState: caruselState.build());
+              interviewState: interviewState.build());
     } catch (_) {
       String _$failedField;
       try {
@@ -262,8 +262,8 @@ class AppStateBuilder implements Builder<AppState, AppStateBuilder> {
         questionState.build();
         _$failedField = 'cameraState';
         cameraState.build();
-        _$failedField = 'caruselState';
-        caruselState.build();
+        _$failedField = 'interviewState';
+        interviewState.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             'AppState', _$failedField, e.toString());

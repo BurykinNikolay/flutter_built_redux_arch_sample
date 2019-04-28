@@ -58,13 +58,13 @@ class _$QuestionsState extends QuestionsState {
   @override
   final BuiltMap<String, BuiltList<String>> questions;
 
-  factory _$QuestionsState([void updates(QuestionsStateBuilder b)]) =>
+  factory _$QuestionsState([void Function(QuestionsStateBuilder) updates]) =>
       (new QuestionsStateBuilder()..update(updates)).build();
 
   _$QuestionsState._({this.questions}) : super._();
 
   @override
-  QuestionsState rebuild(void updates(QuestionsStateBuilder b)) =>
+  QuestionsState rebuild(void Function(QuestionsStateBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
@@ -119,7 +119,7 @@ class QuestionsStateBuilder
   }
 
   @override
-  void update(void updates(QuestionsStateBuilder b)) {
+  void update(void Function(QuestionsStateBuilder) updates) {
     if (updates != null) updates(this);
   }
 

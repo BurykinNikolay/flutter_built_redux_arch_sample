@@ -20,6 +20,10 @@
         "source": "/Users/nikolajburykin/.gradle/caches/transforms-1/files-1.1/appcompat-1.0.0.aar/8bee3e4993e69143bf901ff3e0eba01e/res/layout/abc_search_dropdown_item_icons_2line.xml"
     },
     {
+        "merged": "/Users/nikolajburykin/yops_interview/build/app/intermediates/res/merged/release/layout_abc_screen_toolbar.xml.flat",
+        "source": "/Users/nikolajburykin/.gradle/caches/transforms-1/files-1.1/appcompat-1.0.0.aar/8bee3e4993e69143bf901ff3e0eba01e/res/layout/abc_screen_toolbar.xml"
+    },
+    {
         "merged": "/Users/nikolajburykin/yops_interview/build/app/intermediates/res/merged/release/drawable-xhdpi-v4_notification_bg_low_pressed.9.png.flat",
         "source": "/Users/nikolajburykin/.gradle/caches/transforms-1/files-1.1/core-1.0.0.aar/180f9a79d86c6abdf734915bdb411f7b/res/drawable-xhdpi-v4/notification_bg_low_pressed.9.png"
     },

@@ -1,6 +1,6 @@
 {
   "name": "flutter_ffmpeg",
-  "version": "0.1.1",
+  "version": "0.2.1",
   "summary": "FFmpeg plugin for Flutter.",
   "description": "FFmpeg plugin based on mobile-ffmpeg for Flutter.",
   "homepage": "https://github.com/tanersener/flutter-ffmpeg",
@@ -14,6 +14,7 @@
   "platforms": {
     "ios": "9.3"
   },
+  "static_framework": true,
   "source": {
     "path": "."
   },
@@ -24,7 +25,7 @@
 
     ],
     "mobile-ffmpeg-https": [
-      "4.2.LTS"
+      "4.2.1"
     ]
   }
 }

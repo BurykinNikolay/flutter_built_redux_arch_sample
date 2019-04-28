@@ -3,7 +3,7 @@ import 'home_container.dart';
 import 'package:yops_interview/domain/models/models.dart';
 import 'package:flutter/material.dart';
 
-import 'package:yops_interview/presentation/presenters.dart';
+import 'package:yops_interview/presentation/presentation.dart';
 import 'package:yops_interview/components/components.dart';
 
 class HomeScreen extends StatelessWidget {
