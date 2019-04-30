@@ -148,50 +148,56 @@ class _InterviewViewState extends State<InterviewView> {
   }
 
   Widget _question(String question, List<Color> colorScheme) {
-    return Stack(children: <Widget>[
-      RepaintBoundary(
-        key: scr,
-        child: Container(
-          color: Colors.black,
-          child: Padding(
-            padding: EdgeInsets.only(left: 6, top: 50, right: 6, bottom: 70),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(25),
-              child: Container(
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment.topRight,
-                    end: Alignment.bottomLeft,
-                    stops: [0.1, 0.5, 0.7, 0.9],
-                    colors: colorScheme,
+    return Container(
+        color: Colors.black,
+        child: Stack(children: <Widget>[
+          AspectRatio(
+              aspectRatio:
+                  widget?.model?.player?.value?.aspectRatio ?? 1080 / 1920,
+              child: RepaintBoundary(
+                key: scr,
+                child: Container(
+                  color: Colors.black,
+                  child: Padding(
+                    padding:
+                        EdgeInsets.only(left: 6, top: 50, right: 6, bottom: 70),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(25),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          gradient: LinearGradient(
+                            begin: Alignment.topRight,
+                            end: Alignment.bottomLeft,
+                            stops: [0.1, 0.5, 0.7, 0.9],
+                            colors: colorScheme,
+                          ),
+                        ),
+                        child: Center(
+                          child: Text(
+                            question,
+                            style: TextStyle(fontSize: 17, color: Colors.white),
+                          ),
+                        ),
+                      ),
+                    ),
                   ),
                 ),
-                child: Center(
-                  child: Text(
-                    question,
-                    style: TextStyle(fontSize: 17, color: Colors.white),
-                  ),
-                ),
-              ),
-            ),
-          ),
-        ),
-      ),
-      Positioned(
-          top: 70,
-          right: 25,
-          child: CircularPercentIndicator(
-            addAutomaticKeepAlive: false,
-            radius: 25.0,
-            animation: true,
-            animationDuration: 3000,
-            lineWidth: 3.0,
-            percent: 1.0,
-            circularStrokeCap: CircularStrokeCap.butt,
-            backgroundColor: Colors.white.withOpacity(0.5),
-            progressColor: Colors.white,
-          ))
-    ]);
+              )),
+          Positioned(
+              top: 70,
+              right: 25,
+              child: CircularPercentIndicator(
+                addAutomaticKeepAlive: false,
+                radius: 25.0,
+                animation: true,
+                animationDuration: 3000,
+                lineWidth: 3.0,
+                percent: 1.0,
+                circularStrokeCap: CircularStrokeCap.butt,
+                backgroundColor: Colors.white.withOpacity(0.5),
+                progressColor: Colors.white,
+              ))
+        ]));
   }
 
   void _pageChanged(int index, BuildContext context) {

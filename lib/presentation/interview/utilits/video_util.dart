@@ -59,66 +59,72 @@ class VideoUtil {
   }
 
   Future<String> encodeVideo(List<String> assets) async {
-    String assetsSettings = "";
-    int index = 0;
+    try {
+      String assetsSettings = "";
+      int index = 0;
 
-    // var test = _assets[1];
+      // var test = _assets[1];
 
-    // await VideoUtil.copyFileAssets(test, VIDEO_1)
-    //     .then((path) => print('Loaded asset $path.'));
-    // List<String> assets = [];
+      // await VideoUtil.copyFileAssets(test, VIDEO_1)
+      //     .then((path) => print('Loaded asset $path.'));
+      // List<String> assets = [];
 
-    // await VideoUtil.assetPath(VIDEO_1).then((image1Path) {
-    //   assets = [_assets[0], image1Path];
-    // });
+      // await VideoUtil.assetPath(VIDEO_1).then((image1Path) {
+      //   assets = [_assets[0], image1Path];
+      // });
 
-    assets.forEach((asset) {
-      final int i = index;
-      if (index != assets.length - 1) {
-        assetsSettings += "[$i:v]scale=w=720:h=1280,setsar=sar=40/33[${i}v];";
-      } else {
-        assetsSettings += "[$i:v]scale=w=720:h=1280,setsar=sar=40/33[${i}v];";
-      }
-
-      index += 1;
-    });
-
-    index = 0;
-
-    assets.forEach((asset) {
-      final int i = index;
-
-      if (asset.contains(".mp4")) {
-        assetsSettings += "[${i}v][$i:a]";
-      } else {
-        assetsSettings += "[${i}v][${assets.length}:a]";
-      }
-
-      index += 1;
-    });
-
-    final String videoPath = "video.mp4";
-    final String customOptions =
-        "-f lavfi -t 0.1 -i anullsrc=channel_layout=stereo:sample_rate=44100 -filter_complex ${assetsSettings}concat=n=${assets.length}:v=1:a=1[outv][outa] ";
-    final String outputMap = "-map [outv] -map [outa] ";
-    final String ffmpegCodec = "mpeg4";
-    print(customOptions);
-    String path;
-    await VideoUtil.assetPath(videoPath).then((fullVideoPath) async {
-      _clearDirectory(fullVideoPath);
-      await execute(VideoUtil.generateEncodeVideoScript(
-              assets, fullVideoPath, ffmpegCodec, customOptions, outputMap))
-          .then((rc) async {
-        if (rc != 0) {
-          print("error in video coding: $rc");
-          path = "error";
+      assets.forEach((asset) {
+        final int i = index;
+        if (index != assets.length - 1) {
+          assetsSettings +=
+              "[$i:v]scale=w=1080:h=1920,setsar=sar=40/33[${i}v];";
         } else {
-          path = fullVideoPath;
+          assetsSettings +=
+              "[$i:v]scale=w=1080:h=1920,setsar=sar=40/33[${i}v];";
         }
-      });
-    });
 
-    return path;
+        index += 1;
+      });
+
+      index = 0;
+
+      assets.forEach((asset) {
+        final int i = index;
+
+        if (asset.contains(".mp4")) {
+          assetsSettings += "[${i}v][$i:a]";
+        } else {
+          assetsSettings += "[${i}v][${assets.length}:a]";
+        }
+
+        index += 1;
+      });
+
+      final String videoPath = "video.mp4";
+      final String customOptions =
+          "-f lavfi -t 0.1 -i anullsrc=channel_layout=stereo:sample_rate=44100 -filter_complex ${assetsSettings}concat=n=${assets.length}:v=1:a=1[outv][outa] ";
+      final String outputMap = "-map [outv] -map [outa] ";
+      final String ffmpegCodec = "mpeg4";
+      print(customOptions);
+      String path;
+      await VideoUtil.assetPath(videoPath).then((fullVideoPath) async {
+        _clearDirectory(fullVideoPath);
+        await execute(VideoUtil.generateEncodeVideoScript(
+                assets, fullVideoPath, ffmpegCodec, customOptions, outputMap))
+            .then((rc) async {
+          if (rc != 0) {
+            print("error in video coding: $rc");
+            path = "error";
+          } else {
+            path = fullVideoPath;
+          }
+        });
+      });
+
+      return path;
+    } catch (e) {
+      return e.toString() + " error";
+    }
   }
 
   void _clearDirectory(String outputFilePath) {

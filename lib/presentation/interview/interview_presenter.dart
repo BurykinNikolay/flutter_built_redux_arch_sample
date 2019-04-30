@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:camera/camera.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:share_extend/share_extend.dart';
 import 'package:video_player/video_player.dart';
@@ -35,13 +36,45 @@ class InterviewPresenter extends StatelessWidget {
     newResults[index] = videoPath;
 
     startProgress(context);
-    VideoUtil().encodeVideo(newResults).then((outputFilePath) {
-      Navigator.of(context).pop();
-      if (outputFilePath == "error") {
-      } else {
-        setPath(outputFilePath);
-      }
-    });
+    try {
+      VideoUtil().encodeVideo(newResults).then((outputFilePath) {
+        Navigator.of(context).pop();
+        if (outputFilePath.contains("error")) {
+          _showErrorDialog(context, outputFilePath);
+        } else {
+          setPath(outputFilePath);
+        }
+      });
+    } catch (e) {
+      print("show error");
+    }
+  }
+
+  void _showErrorDialog(BuildContext context, String error) {
+    showDialog(
+      barrierDismissible: false,
+      context: context,
+      builder: (BuildContext context) {
+        return CupertinoAlertDialog(
+          title: Text("Ошибка кодирования"),
+          content: Column(
+            children: <Widget>[Text(error)],
+          ),
+          actions: <Widget>[
+            CupertinoDialogAction(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                  Navigator.of(context).pop();
+                },
+                isDefaultAction: true,
+                child: new Text(
+                  "Закрыть",
+                  style: TextStyle(color: Colors.black),
+                ))
+          ],
+        );
+      },
+    );
   }
 
   void setScreenshotPath(String path) {

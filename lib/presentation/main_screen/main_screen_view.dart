@@ -21,6 +21,9 @@ class MainScreenView extends StatelessWidget {
         delegate: SliverChildListDelegate([
           _randomQuestions(),
           _questionGrid(),
+          Container(
+            height: 15,
+          )
         ]),
       )
     ]);
@@ -36,16 +39,16 @@ class MainScreenView extends StatelessWidget {
           return Stack(
             children: <Widget>[
               Container(
-                height: 400,
+                color: Color(0xFFF85F3F),
                 width: MediaQuery.of(context).size.width,
                 child: Image.asset(
                   "assets/images/hero-banner01-2.png",
-                  fit: BoxFit.cover,
+                  fit: BoxFit.fitWidth,
                 ),
               ),
               Positioned(
                 left: 20,
-                top: 75,
+                top: 52,
                 right: 20,
                 child: Container(
                     child: Row(
@@ -113,7 +116,7 @@ class MainScreenView extends StatelessWidget {
           crossAxisCount: 2, mainAxisSpacing: 10, crossAxisSpacing: 10),
       physics: NeverScrollableScrollPhysics(),
       shrinkWrap: true,
-      padding: EdgeInsets.only(left: 10, top: 15, right: 10),
+      padding: EdgeInsets.only(left: 10, right: 10),
       itemCount: model?.questions?.keys?.length ?? 0,
       itemBuilder: (BuildContext context, int index) {
         String questionTitle = model.questions.keys.toList()[index];
@@ -145,10 +148,8 @@ class MainScreenView extends StatelessWidget {
               width: 163,
               decoration: BoxDecoration(
                 gradient: LinearGradient(
-                  // Where the linear gradient begins and ends
                   begin: Alignment.topRight,
                   end: Alignment.bottomLeft,
-                  // Add one stop for each color. Stops should increase from 0 to 1
                   stops: [0.1, 0.5, 0.7, 0.9],
                   colors: colors,
                 ),
@@ -163,7 +164,9 @@ class MainScreenView extends StatelessWidget {
                       style: TextStyle(
                           color: Colors.white,
                           fontFamily: "Montserrat",
-                          fontSize: 20),
+                          fontSize: 20,
+                          ),
+                          textAlign: TextAlign.center,
                     ),
                   ),
                 ),

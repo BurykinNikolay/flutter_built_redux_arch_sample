@@ -13,8 +13,9 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return ActiveTab(
       builder: (BuildContext context, AppTab activeTab) {
-        return Scaffold(
-            body: _body(activeTab), bottomNavigationBar: HomeContainer());
+        return Scaffold(body: _body(activeTab)
+            // , bottomNavigationBar: HomeContainer()
+            );
       },
     );
   }
