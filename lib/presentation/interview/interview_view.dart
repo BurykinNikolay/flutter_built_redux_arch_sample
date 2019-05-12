@@ -16,6 +16,7 @@ import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:uuid/uuid.dart';
 import 'package:yops_interview/presentation/camera/camera.dart';
 
+import 'components/circle_progress_bar.dart';
 import 'components/video_player_preview.dart';
 import 'interview_presenter.dart';
 import 'interview_model.dart';
@@ -33,14 +34,19 @@ class _InterviewViewState extends State<InterviewView> {
   List<String> assets = [];
   List<int> indexList = [];
 
+  Timer _timer;
+  int _start = 1;
+  int _max = 60;
+
   var scr = new GlobalKey();
   CarouselSlider carusel;
+  bool _onTap = false;
 
   @override
   void initState() {
     super.initState();
     initCamera();
-    _delayedNext(0);
+    startTimer(0);
   }
 
   Future initCamera() async {
@@ -72,6 +78,35 @@ class _InterviewViewState extends State<InterviewView> {
   }
 
   @override
+  void dispose() {
+    _timer.cancel();
+    super.dispose();
+  }
+
+  void startTimer(int index) {
+    _start = 1;
+
+    if (_timer != null && _timer.isActive) {
+      _timer.cancel();
+    }
+    const oneSec = const Duration(milliseconds: 50);
+    _timer = new Timer.periodic(
+        oneSec,
+        (Timer timer) => setState(() {
+              if (_start >= _max) {
+                timer.cancel();
+                _delayedNext(index);
+              } else {
+                if (!_onTap) {
+                  setState(() {
+                    _start = _start + 1;
+                  });
+                }
+              }
+            }));
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Material(
         child: _slider(context, MediaQuery.of(context).size.height));
@@ -82,23 +117,13 @@ class _InterviewViewState extends State<InterviewView> {
     List<Widget> questionsWithCamera = [];
     int index = 0;
     for (String question in questions) {
-      List<List<Color>> colors = [
-        [
-          Color(0xFFE6693A),
-          Color(0xFFE7693F),
-          Color(0xFFE9694F),
-          Color(0xFFE96B60),
-        ],
-        [
-          Color(0xFF4CABD6),
-          Color(0xFF56BFDF),
-          Color(0xFF65D9E8),
-          Color(0xFF6AE1EC),
-        ]
+      List<Color> color = [
+        Color(0xFFE6693A),
+        Color(0xFFE7693F),
+        Color(0xFFE9694F),
+        Color(0xFFE96B60),
       ];
-      final _random = new Random();
-      var values = colors.toList();
-      var colorScheme = values[_random.nextInt(values.length)];
+      var colorScheme = color;
       final questionItem = _question(question, colorScheme);
       indexList.add(index);
       questionsWithCamera.add(questionItem);
@@ -113,12 +138,17 @@ class _InterviewViewState extends State<InterviewView> {
       viewportFraction: 1.0,
       enableInfiniteScroll: false,
       onPageChanged: (int index) {
-        _pageChanged(index, context);
+        setState(() {
+          if (_timer != null && _timer.isActive) {
+            _timer.cancel();
+          }
+          _pageChanged(index, context);
+        });
       },
       items: questionsWithCamera.map((widget) {
         return Builder(
           builder: (BuildContext context) {
-            return widget;
+            return Container(color: Colors.black, child: widget);
           },
         );
       }).toList(),
@@ -148,66 +178,79 @@ class _InterviewViewState extends State<InterviewView> {
   }
 
   Widget _question(String question, List<Color> colorScheme) {
-    return Container(
-        color: Colors.black,
-        child: Stack(children: <Widget>[
-          AspectRatio(
-              aspectRatio:
-                  widget?.model?.player?.value?.aspectRatio ?? 1080 / 1920,
-              child: RepaintBoundary(
-                key: scr,
-                child: Container(
-                  color: Colors.black,
-                  child: Padding(
-                    padding:
-                        EdgeInsets.only(left: 6, top: 50, right: 6, bottom: 70),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(25),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          gradient: LinearGradient(
-                            begin: Alignment.topRight,
-                            end: Alignment.bottomLeft,
-                            stops: [0.1, 0.5, 0.7, 0.9],
-                            colors: colorScheme,
-                          ),
-                        ),
-                        child: Center(
-                          child: Text(
-                            question,
-                            style: TextStyle(fontSize: 17, color: Colors.white),
+    return Listener(
+      onPointerDown: (event) {
+        setState(() {
+          _onTap = true;
+        });
+      },
+      onPointerUp: (event) {
+        setState(() {
+          _onTap = false;
+        });
+      },
+      child: Container(
+          color: Colors.black,
+          child: Stack(
+            children: <Widget>[
+              AspectRatio(
+                  aspectRatio:
+                      widget?.model?.player?.value?.aspectRatio ?? 1080 / 1920,
+                  child: RepaintBoundary(
+                    key: scr,
+                    child: Container(
+                      color: Colors.black,
+                      child: Padding(
+                        padding: EdgeInsets.only(
+                            left: 6, top: 50, right: 6, bottom: 70),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(25),
+                          child: Container(
+                            decoration: BoxDecoration(
+                              gradient: LinearGradient(
+                                begin: Alignment.topRight,
+                                end: Alignment.bottomLeft,
+                                stops: [0.1, 0.5, 0.7, 0.9],
+                                colors: colorScheme,
+                              ),
+                            ),
+                            child: Center(
+                              child: Text(
+                                question,
+                                style: TextStyle(
+                                    fontSize: 17, color: Colors.white),
+                              ),
+                            ),
                           ),
                         ),
                       ),
                     ),
-                  ),
-                ),
-              )),
-          Positioned(
-              top: 70,
-              right: 25,
-              child: CircularPercentIndicator(
-                addAutomaticKeepAlive: false,
-                radius: 25.0,
-                animation: true,
-                animationDuration: 3000,
-                lineWidth: 3.0,
-                percent: 1.0,
-                circularStrokeCap: CircularStrokeCap.butt,
-                backgroundColor: Colors.white.withOpacity(0.5),
-                progressColor: Colors.white,
-              ))
-        ]));
+                  )),
+              Positioned(
+                top: 70,
+                right: 25,
+                child: Container(
+                    width: 50,
+                    child: Padding(
+                        padding: const EdgeInsets.all(5.0),
+                        child: CircleProgressBar(
+                            backgroundColor: Colors.white.withOpacity(0.4),
+                            value: _start / _max,
+                            foregroundColor: Colors.white))),
+              )
+            ],
+          )),
+    );
   }
 
   void _pageChanged(int index, BuildContext context) {
     if (index == 0) {
-      _delayedNext(0);
+      startTimer(0);
     } else if (indexList.contains(index) && index != carusel.items.length - 1) {
       widget.presenter.stop();
       final videoPath = widget.model.currentFilePath;
       widget.presenter.addResult(index - 1, videoPath);
-      _delayedNext(index);
+      startTimer(index);
     } else if (index == carusel.items.length - 1) {
       final videoPath = widget.model.currentFilePath;
       widget.presenter.stop();
@@ -240,10 +283,8 @@ class _InterviewViewState extends State<InterviewView> {
   }
 
   Future _delayedNext(int index) async {
-    Future.delayed(const Duration(milliseconds: 3000)).then((result) async {
-      var uuid = new Uuid();
-      _nextItem(uuid.v1(), index);
-    });
+    var uuid = new Uuid();
+    _nextItem(uuid.v1(), index);
   }
 
   Future _nextItem(String question, int index) async {
